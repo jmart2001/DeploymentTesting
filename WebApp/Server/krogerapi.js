@@ -1,6 +1,6 @@
 const clientId = 'usc390-fbdb0ed44db8b8087dd350f5ea9ae7258333111164567317651';
 const clientToken = 'i8-ZQLNaS3xmtqPMJnpeQrfFXW_21kWjEkykAufn';
-const productId = 'YOUR_PRODUCT_ID';
+const productId = 'YOUR_PRODUCT_ID'; //needs api
 
 // Kroger API endpoint
 const apiUrl = `https://api.kroger.com/v1/products/${productId}`;
