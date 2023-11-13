@@ -13,9 +13,7 @@ async function fetchKrogerData() {
         'Content-Type': 'application/json',
         'Client-Id': clientId,
         'Authorization': `Bearer ${clientToken}`,
-        // Add any other headers required by the API
       },
-      // Add any other options like method, body, etc., depending on the API documentation
     });
 
     if (!response.ok) {
