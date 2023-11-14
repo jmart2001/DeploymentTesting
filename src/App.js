@@ -1,5 +1,9 @@
 import "./styles.css";
 import Header from './Header';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Recipes from './pages/Recipes';
+import PriceComp from './pages/PriceComp';
+import Profile from './pages/Profile';
 import React, { useState } from 'react';
 //npm install react-router-dom
 
@@ -16,8 +20,8 @@ function Capstone() {
 
 export default function App() {
   return (
-    <div style={{background: 'lemonchiffon'}} className="App">
-      <h1 style={{background: 'lemonchiffon'}}><Header/></h1>
+    <div style={{background: 'lemonchiffon'}} className="App">\
+      <Router><Header/></Router>
       <h1>Hello Capstone</h1>
       <h2 style={{textAlign: 'center'}}><Capstone/></h2>
     </div>
