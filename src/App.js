@@ -1,4 +1,7 @@
 import "./styles.css";
+import Header from './Header';
+import React, { useState } from 'react';
+
 
 function Capstone() {
   return (
