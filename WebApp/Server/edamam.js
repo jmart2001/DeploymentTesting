@@ -17,7 +17,8 @@ async function fetchData() {
   }
 }
 
-function saveToJsonFile(data, fileName) {
+function saveToJsonFile(data, query) {
+  const fileName = `${query}_data.json`; // Dynamically generate filename
   const jsonData = JSON.stringify(data, null, 2);
 
   fs.writeFile(fileName, jsonData, (err) => {
@@ -27,5 +28,5 @@ function saveToJsonFile(data, fileName) {
 }
 
 fetchData()
-  .then((data) => saveToJsonFile(data, 'edamam_data.json'))
+  .then((data) => saveToJsonFile(data, query))
   .catch((error) => console.error(error));
