@@ -13,7 +13,7 @@ function Capstone() {
   );
 }
 
-function App() {
+export default function App() {
   return (
     <div className="App">
       <h1>Hello Capstone</h1>
