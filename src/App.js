@@ -20,7 +20,7 @@ function Capstone() {
 
 export default function App() {
   return (
-    <div style={{background: 'lemonchiffon'}} className="App">\
+    <div style={{background: 'lemonchiffon'}} className="App">
       <Router><Header/></Router>
       <h1>Hello Capstone</h1>
       <h2 style={{textAlign: 'center'}}><Capstone/></h2>
