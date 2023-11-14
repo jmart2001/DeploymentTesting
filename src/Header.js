@@ -15,7 +15,7 @@ return (
 }
 function Recipe() {
 return (
-    <a href="/RepGen" target="_blank">
+    <a href="/pages/Recipes" target="_blank">
     <button style={{fontFamily: 'cursive',fontSize: '25px'}}>
         Recipe Generator
     </button>
