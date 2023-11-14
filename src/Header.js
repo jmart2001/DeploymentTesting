@@ -24,7 +24,7 @@ return (
 }
 function Price() {
 return (
-    <a href="/PriceCom">
+    <a href="/PriceComp">
     <button style={{fontFamily: 'cursive',fontSize: '25px'}}>
         Price Comparator
     </button>
