@@ -1,7 +1,7 @@
 import "./Header.css";
-import "./pages/PriceCom.js";
-import "./pages/Profile.js";
-import "./pages/Recipes.js";
+import "/pages/PriceCom";
+import "/pages/Profile";
+import "/pages/Recipes";
 import React, { useState } from 'react';
 
 function Home() {
