@@ -1,12 +1,12 @@
 import "./Header.css";
 import PriceComp from "./pages/PriceComp";
-import "./pages/Profile";
-import "./pages/Recipes";
+import Profile from "./pages/Profile";
+import Recipes from "./pages/Recipes";
 import React, { useState } from 'react';
 
 function Home() {
 return (
-    <a href="/" target="_blank">
+    <a href="/">
     <button style={{fontFamily: 'cursive',fontSize: '25px'}}>
         Home
     </button>
@@ -15,7 +15,7 @@ return (
 }
 function Recipe() {
 return (
-    <a href="/pages/Recipes" target="_blank">
+    <a href="/Recipes">
     <button style={{fontFamily: 'cursive',fontSize: '25px'}}>
         Recipe Generator
     </button>
@@ -24,16 +24,16 @@ return (
 }
 function Price() {
 return (
-    <a href="/PriceCom" component={PriceComp}>
+    <a href="/PriceCom">
     <button style={{fontFamily: 'cursive',fontSize: '25px'}}>
         Price Comparator
     </button>
     </a>
     );
 }
-function Profile() {
+function Prof() {
 return (
-    <a href="/Prof" target="_blank">
+    <a href="/Prof">
     <button style={{fontFamily: 'cursive',fontSize: '25px'}}>
         Profile
     </button>
@@ -50,7 +50,7 @@ function Header() {
             <Home/>
             <Recipe/>
             <Price/>
-            <Profile/>
+            <Prof/>
           </ul>
         </nav>
       </header>
