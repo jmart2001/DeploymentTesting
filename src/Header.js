@@ -3,6 +3,7 @@ import PriceComp from "./pages/PriceComp";
 import Profile from "./pages/Profile";
 import Recipes from "./pages/Recipes";
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 function Home() {
 return (
@@ -13,31 +14,32 @@ return (
     </a>
     );
 }
+
 function Recipe() {
 return (
-    <a href="/Recipes">
+    <Link to="/Recipes">
     <button style={{fontFamily: 'cursive',fontSize: '25px'}}>
         Recipe Generator
     </button>
-    </a>
+    </Link>
     );
 }
 function Price() {
 return (
-    <a href="/PriceComp">
+    <Link to="/PriceComp">
     <button style={{fontFamily: 'cursive',fontSize: '25px'}}>
         Price Comparator
     </button>
-    </a>
+    </Link>
     );
 }
 function Prof() {
 return (
-    <a href="/Prof">
+    <Link to="/Prof">
     <button style={{fontFamily: 'cursive',fontSize: '25px'}}>
         Profile
     </button>
-    </a>
+    </Link>
     );
 }
 
