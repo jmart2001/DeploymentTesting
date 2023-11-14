@@ -1,7 +1,4 @@
 import "./styles.css";
-import "./Header.css";
-import Header from './Header';
-import React, { useState } from 'react';
 
 function Capstone() {
   return (
@@ -13,10 +10,16 @@ function Capstone() {
   );
 }
 
-export default function App() {
+function App() {
   return (
-    <div style={{background: 'lemonchiffon'}} className="App">
-      <h1 style={{background: 'lemonchiffon'}}><Header/></h1>
+    <div className="App">
+      <h1>Hello Capstone</h1>
+      <h2>Here is my codebase!</h2>
+      <h2>Here is another commit</h2>
+      <h2>Here is a link to the Capstone website</h2>
+      <h2 style={{textAlign: 'center'}}><Capstone/></h2>
+      <h2>Hello! Testing the commit 2!</h2>
+      <h2>Hello! Testing the commit 3!</h2>
     </div>
   );
 }
