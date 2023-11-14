@@ -1,5 +1,5 @@
 import "./Header.css";
-import "./pages/PriceCom";
+import "./pages/PriceComp";
 import "./pages/Profile";
 import "./pages/Recipes";
 import React, { useState } from 'react';
