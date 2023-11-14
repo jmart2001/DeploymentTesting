@@ -1,5 +1,5 @@
 import "./Header.css";
-import "./pages/PriceComp";
+import PriceComp from "./pages/PriceComp";
 import "./pages/Profile";
 import "./pages/Recipes";
 import React, { useState } from 'react';
@@ -24,7 +24,7 @@ return (
 }
 function Price() {
 return (
-    <a href="/PriceCom" target="_blank">
+    <a href="/PriceCom" component={PriceComp}>
     <button style={{fontFamily: 'cursive',fontSize: '25px'}}>
         Price Comparator
     </button>
