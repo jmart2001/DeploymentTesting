@@ -18,7 +18,7 @@ return (
     <a href="/Recipes">
     <button style={{fontFamily: 'cursive',fontSize: '25px'}}>
         Recipe Generator
-        <Recipe/>
+        <Recipes/>
     </button>
     </a>
     );
