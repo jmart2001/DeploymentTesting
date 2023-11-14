@@ -1,4 +1,5 @@
 import "./styles.css";
+import Header from "./Header";
 
 function Capstone() {
   return (
