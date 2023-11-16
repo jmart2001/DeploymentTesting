@@ -6,22 +6,16 @@ function Home() {
         <div>
             <nav>
                 <ul>
-                    <li>
+                    <a>
                         <Link to="/login">Login</Link>
-                    </li>
-                    <li>
+                    </a>
+                    <a>
                         <Link to="/register">Register</Link>
-                    </li>
+                    </a>
                 </ul>
             </nav>
             <div>
-                <h1>Hello Capstone</h1>
-                <h2>Here is my codebase!</h2>
-                <h2>Here is another commit</h2>
-                <h2>Here is a link to the Capstone website</h2>
-                <h2>Hello! Testing the commit 2!</h2>
-                <h2>Hello! Testing the commit 3! Merge Conflict! Justin</h2>
-                <h2>Testing if deployment works!</h2>
+                <h1>Welcome to What to Cook</h1>
             </div>
         </div>
     )
