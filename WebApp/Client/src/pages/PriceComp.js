@@ -5,7 +5,7 @@ function PriceComp() {
     return (
         <div>
             <div>
-                <h1>Rep</h1>
+                <h1>Price Comparer</h1>
             </div>
         </div>
     )
