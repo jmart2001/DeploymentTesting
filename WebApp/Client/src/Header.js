@@ -54,9 +54,13 @@ function Header() {
             <Price/>
             <Prof/>
           </ul>
-        </nav>
+        </nav> 
+      <Routes>
+      <Route path="/pages/recipes" Component={Recipes}/>
+      <Route path="/pages/pricecompare" Component={PriceComp}/>
+      <Route path="/pages/profile" Component={Profile}/>
+      </Routes>
       </header>
-      
     );
   }
 
