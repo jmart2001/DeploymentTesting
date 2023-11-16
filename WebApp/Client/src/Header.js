@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 function Home() {
 return (
-    <a href="/">
+    <a href="/home">
     <button style={{fontFamily: 'cursive',fontSize: '25px'}}>
         Home
     </button>
@@ -17,7 +17,7 @@ return (
 
 function Recipe() {
 return (
-    <Link to="/Recipes">
+    <Link to="/recipes">
     <button style={{fontFamily: 'cursive',fontSize: '25px'}}>
         Recipe Generator
     </button>
@@ -26,7 +26,7 @@ return (
 }
 function Price() {
 return (
-    <Link to="/PriceComp">
+    <Link to="/pricecompare">
     <button style={{fontFamily: 'cursive',fontSize: '25px'}}>
         Price Comparator
     </button>
@@ -35,7 +35,7 @@ return (
 }
 function Prof() {
 return (
-    <Link to="/Prof">
+    <Link to="/profile">
     <button style={{fontFamily: 'cursive',fontSize: '25px'}}>
         Profile
     </button>
