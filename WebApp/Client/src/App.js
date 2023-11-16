@@ -21,9 +21,9 @@ function App() {
           <Route path="/register" Component={Register}/>
           <Route path="/" Component={FrontPage}/>
           <Route path="/home" Component={Home}/>
-          <Route path="/recipes" Component={Recipes}/>
-          <Route path="/pricecompare" Component={PriceComp}/>
-          <Route path="/profile" Component={Profile}/>
+          <Route path="/pages/recipes" Component={Recipes}/>
+          <Route path="/pages/pricecompare" Component={PriceComp}/>
+          <Route path="/pages/profile" Component={Profile}/>
         </Routes>
       </div>
     </Router>

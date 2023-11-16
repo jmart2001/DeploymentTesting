@@ -17,7 +17,7 @@ return (
 
 function Recipe() {
 return (
-    <Link to="/recipes">
+    <Link to="/pages/recipes">
     <button style={{fontFamily: 'cursive',fontSize: '25px'}}>
         Recipe Generator
     </button>
@@ -26,7 +26,7 @@ return (
 }
 function Price() {
 return (
-    <Link to="/pricecompare">
+    <Link to="/pages/pricecompare">
     <button style={{fontFamily: 'cursive',fontSize: '25px'}}>
         Price Comparator
     </button>
@@ -35,7 +35,7 @@ return (
 }
 function Prof() {
 return (
-    <Link to="/profile">
+    <Link to="/pages/profile">
     <button style={{fontFamily: 'cursive',fontSize: '25px'}}>
         Profile
     </button>
@@ -56,6 +56,7 @@ function Header() {
           </ul>
         </nav>
       </header>
+      
     );
   }
 
