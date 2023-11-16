@@ -20,6 +20,7 @@ function App() {
           <Route path="/login" Component={Login}/>
           <Route path="/register" Component={Register}/>
           <Route path="/frontpage" Component={FrontPage}/>
+          <Route path="/" Component={Home}/>
         </Routes>
       </div>
     </Router>
