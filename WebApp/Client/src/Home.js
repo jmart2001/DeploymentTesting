@@ -7,7 +7,7 @@ function Home() {
             <nav>
                 <ul>
                     <a>
-                        <Button><Link to="/login">Login</Link></Button>
+                        <button><Link to="/login">Login</Link></button>
                     </a>
                     <a>
                         <Link to="/register">Register</Link>
