@@ -1,8 +1,15 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-export default function PriceComp() {
+function PriceComp() {
     return (
-        <h1>Hi</h1>
-    );
+        <div>
+            <div>
+                <h1>Rep</h1>
+            </div>
+        </div>
+    )
 }
+
+export default PriceComp
 
