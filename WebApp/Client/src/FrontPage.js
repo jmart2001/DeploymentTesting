@@ -23,7 +23,7 @@ function FrontPage() {
                 </ul>
             </nav>
             <div>
-                <h1>Welcome to What to Cook in the new way</h1>
+                <h1>Welcome to What to Cook</h1>
             </div>
         </div>
     )
