@@ -7,7 +7,11 @@ function Home() {
             <nav>
                 <ul>
                     <a>
-                        <button><Link to="/login">Login</Link></button>
+                        <Link to="/login">
+                        <button style={{fontFamily: 'cursive',fontSize: '25px'}}>
+                            Login
+                        </button>
+                        </Link>
                     </a>
                     <a>
                         <Link to="/register">
