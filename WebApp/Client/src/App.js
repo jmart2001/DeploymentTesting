@@ -6,6 +6,7 @@ import FrontPage from './FrontPage';
 import Login from './Login';
 import Register from './Register';
 import Header from './Header';
+import Footer from './Footer';
 import Recipes from './pages/Recipes';
 import PriceComp from './pages/PriceComp';
 import Profile from './pages/Profile';
@@ -25,6 +26,7 @@ function App() {
           <Route path="/pricecompare" Component={PriceComp}/>
           <Route path="/profile" Component={Profile}/>
         </Routes>
+        <Footer/>
       </div>
     </Router>
   );
