@@ -49,6 +49,7 @@ function Header() {
         <nav>
           <ul className="right">
             <div style={{fontFamily:'cursive', fontSize: '30px'}} className="left">WhatToCook</div>
+            What to cook
             <Home/>
             <Recipe/>
             <Price/>
