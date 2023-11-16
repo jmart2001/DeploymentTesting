@@ -20,7 +20,10 @@ function App() {
           <Route path="/login" Component={Login}/>
           <Route path="/register" Component={Register}/>
           <Route path="/" Component={FrontPage}/>
-          <Route path="/Home" Component={Home}/>
+          <Route path="/home" Component={Home}/>
+          <Route path="/recipes" Component={Recipes}/>
+          <Route path="/pricecompare" Component={PriceComp}/>
+          <Route path="/profile" Component={Profile}/>
         </Routes>
       </div>
     </Router>
