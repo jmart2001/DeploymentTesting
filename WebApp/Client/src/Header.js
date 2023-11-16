@@ -55,7 +55,7 @@ function Header() {
             <Prof/>
           </ul>
         </nav> 
-        <ul style={{color: 'lemonchiffon'}}>
+        <ul style={{color: 'lemonchiffon', fontSize: '15px'}}>
           Space
         </ul>
       </header>

@@ -55,6 +55,9 @@ function Footer() {
             <Prof/>
           </ul>
         </nav> 
+        <ul style={{color: 'lemonchiffon', fontSize: '15px'}}>
+          Space
+        </ul>
       </header>
     );
   }
