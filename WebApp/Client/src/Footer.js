@@ -5,39 +5,21 @@ import Recipes from "./pages/Recipes";
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-function Home() {
+function ContactUs() {
 return (
-    <a href="/home">
+    <a href="/contactus">
     <button style={{fontFamily: 'cursive',fontSize: '25px'}}>
-        Home
+        Contact Us
     </button>
     </a>
     );
 }
 
-function Recipe() {
+function About() {
 return (
-    <Link to="/recipes">
+    <Link to="/about">
     <button style={{fontFamily: 'cursive',fontSize: '25px'}}>
-        Recipe Generator
-    </button>
-    </Link>
-    );
-}
-function Price() {
-return (
-    <Link to="/pricecompare">
-    <button style={{fontFamily: 'cursive',fontSize: '25px'}}>
-        Price Comparator
-    </button>
-    </Link>
-    );
-}
-function Prof() {
-return (
-    <Link to="/profile">
-    <button style={{fontFamily: 'cursive',fontSize: '25px'}}>
-        Profile
+        About
     </button>
     </Link>
     );
@@ -45,17 +27,15 @@ return (
 
 function Footer() {
     return (
-      <header style={{background: 'lemonchiffon'}} className="header">
+      <header style={{background: 'sienna'}} className="header">
         <nav>
           <ul className="right">
             <div style={{fontFamily:'cursive', fontSize: '30px'}} className="left">WhatToCook</div>
-            <Home/>
-            <Recipe/>
-            <Price/>
-            <Prof/>
+            <ContactUs/>
+            <About/>
           </ul>
         </nav> 
-        <ul style={{color: 'lemonchiffon', fontSize: '15px'}}>
+        <ul style={{color: 'sienna ', fontSize: '15px'}}>
           Space
         </ul>
       </header>

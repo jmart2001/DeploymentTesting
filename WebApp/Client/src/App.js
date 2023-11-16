@@ -10,6 +10,8 @@ import Footer from './Footer';
 import Recipes from './pages/Recipes';
 import PriceComp from './pages/PriceComp';
 import Profile from './pages/Profile';
+import Contact from './pages/Contact';
+import About from './pages/About';
 //npm install react-router-dom
 
 function App() {
@@ -25,6 +27,8 @@ function App() {
           <Route path="/recipes" Component={Recipes}/>
           <Route path="/pricecompare" Component={PriceComp}/>
           <Route path="/profile" Component={Profile}/>
+          <Route path="/contactus" Component={Contact}/>
+          <Route path="/about" Component={About}/>
         </Routes>
         <Footer/>
       </div>
