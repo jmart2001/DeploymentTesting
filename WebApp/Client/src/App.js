@@ -1,9 +1,14 @@
 import "./styles.css";
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './Home';
 import Login from './Login';
 import Register from './Register';
+import Header from './Header';
+import Recipes from './pages/Recipes';
+import PriceComp from './pages/PriceComp';
+import Profile from './pages/Profile';
+//npm install react-router-dom
 
 /*function Capstone() {
   return (
