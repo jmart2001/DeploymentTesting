@@ -55,7 +55,9 @@ function Header() {
             <Prof/>
           </ul>
         </nav> 
-        <ul> <a> </a></ul>
+        <ul style={{color: 'lemonchiffon'}}>
+          Space
+        </ul>
       </header>
     );
   }
