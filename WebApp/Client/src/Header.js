@@ -48,7 +48,7 @@ function Header() {
       <header className="header">
         <nav>
           <ul className="right">
-            <div className="left">WhatToCook</div>
+            <div style={{font:'cursive'}}className="left">WhatToCook</div>
             <Home/>
             <Recipe/>
             <Price/>
