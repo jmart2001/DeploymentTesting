@@ -17,7 +17,7 @@ return (
 
 function Recipe() {
 return (
-    <Link to="/pages/recipes">
+    <Link to="/home">
     <button style={{fontFamily: 'cursive',fontSize: '25px'}}>
         Recipe Generator
     </button>
