@@ -1,58 +1,63 @@
 import "./Header.css";
-//import "/pages/PriceCom";
-//import "/pages/Profile";
-//import "/pages/Recipes";
+import PriceComp from "./pages/PriceComp";
+import Profile from "./pages/Profile";
+import Recipes from "./pages/Recipes";
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 function Home() {
 return (
-    <a href="/" target="_blank">
+    <a href="/home">
     <button style={{fontFamily: 'cursive',fontSize: '25px'}}>
         Home
     </button>
     </a>
     );
 }
+
 function Recipe() {
 return (
-    <a href="/RepGen" target="_blank">
+    <Link to="/recipes">
     <button style={{fontFamily: 'cursive',fontSize: '25px'}}>
         Recipe Generator
     </button>
-    </a>
+    </Link>
     );
 }
 function Price() {
 return (
-    <a href="/PriceCom" target="_blank">
+    <Link to="/pricecompare">
     <button style={{fontFamily: 'cursive',fontSize: '25px'}}>
         Price Comparator
     </button>
-    </a>
+    </Link>
     );
 }
-function Profile() {
+function Prof() {
 return (
-    <a href="/Prof" target="_blank">
+    <Link to="/profile">
     <button style={{fontFamily: 'cursive',fontSize: '25px'}}>
         Profile
     </button>
-    </a>
+    </Link>
     );
 }
 
 function Header() {
     return (
-      <header className="header">
+      <header style={{background: 'lemonchiffon'}} className="header">
         <nav>
           <ul className="right">
-            <div className="left">WhatToCook</div>
+            <div style={{fontFamily:'cursive', fontSize: '30px'}} className="left">WhatToCook</div>
             <Home/>
             <Recipe/>
             <Price/>
-            <Profile/>
+            <Prof/>
           </ul>
-        </nav>
+        </nav> 
+        <ul style={{color: 'lemonchiffon', fontSize: '15px'}}>
+          Space
+        </ul>
       </header>
     );
   }

@@ -1,14 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function Home() {
+function PriceComp() {
     return (
         <div>
             <div>
-                <h1>Welcome to What to Cook</h1>
+                <h1>Price Comparer</h1>
             </div>
         </div>
     )
 }
 
-export default Home
+export default PriceComp
+
