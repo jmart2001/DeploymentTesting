@@ -48,7 +48,7 @@ function Header() {
       <header className="header">
         <nav>
           <ul className="right">
-            <div style={{fontFamily:'cursive', fontSize: '30px'}} className="left">WhatToCook</div>
+            <a style={{fontFamily:'cursive', fontSize: '30px'}} className="left">WhatToCook</a>
             <a style={{fontFamily:'cursive', fontSize: '30px', textAlign:'left'}} > What to cook</a>
             <Home/>
             <Recipe/>
