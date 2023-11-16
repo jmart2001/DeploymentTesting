@@ -23,7 +23,8 @@ import Profile from './pages/Profile';
 function App() {
   return (
     <Router>
-      <div>
+      <div style={{background: 'lemonchiffon'}} className="App">
+      <Header/>
         <Routes>
           <Route path="/login" Component={Login}/>
           <Route path="/register" Component={Register}/>
@@ -33,5 +34,11 @@ function App() {
     </Router>
   );
 }
-
+return (
+  <div style={{background: 'lemonchiffon'}} className="App">
+    <Router><Header/></Router>
+    <h1>Hello Capstone</h1>
+    <h2 style={{textAlign: 'center'}}><Capstone/></h2>
+  </div>
+);
 export default App
