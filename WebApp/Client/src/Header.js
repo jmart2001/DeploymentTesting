@@ -55,7 +55,7 @@ function Header() {
             <Prof/>
           </ul>
         </nav> 
-        <div></div>
+        <ul> <a> </a></ul>
       </header>
     );
   }
