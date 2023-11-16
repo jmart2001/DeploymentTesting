@@ -10,7 +10,11 @@ function Home() {
                         <button><Link to="/login">Login</Link></button>
                     </a>
                     <a>
-                        <Link to="/register">Register</Link>
+                        <Link to="/register">
+                        <button style={{fontFamily: 'cursive',fontSize: '25px'}}>
+                            Register
+                        </button>
+                        </Link>
                     </a>
                 </ul>
             </nav>
