@@ -45,7 +45,7 @@ return (
 
 function Header() {
     return (
-      <header className="header">
+      <header style={{background: 'lemonchiffon'}} className="header">
         <nav>
           <ul className="right">
             <div style={{fontFamily:'cursive', fontSize: '30px'}} className="left">WhatToCook</div>

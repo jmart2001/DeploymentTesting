@@ -14,7 +14,7 @@ import Profile from './pages/Profile';
 function App() {
   return (
     <Router>
-      <div style={{background: 'lemonchiffon'}} className="App">
+      <div style={{background: 'sandybrown'}} className="App">
       <Header/>
         <Routes>
           <Route path="/login" Component={Login}/>
