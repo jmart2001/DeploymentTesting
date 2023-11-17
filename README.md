@@ -1,96 +1,70 @@
-# WhatToCook
+# Getting Started with Create React App
 
-WhatToCook is a recipe-based application. This web application has many features
-to make cooking easier. Overall the user will be able to find recipes based on
-their current ingredients or preferred taste, perform cost analysis on their
-grocery lists, and plan meals for themselves and groups. This application will
-allow people to prepare their meals efficiently while also having the option
-to be cautious of the price of those meals.
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## External Requirements
-In order to build this project you first have to install:
+## Available Scripts
 
-- [REACT.js](https://react.dev/)
-- [Express](https://expressjs.com/)
+In the project directory, you can run:
 
-REACT </br>
-To write code:
-- Download Visual Studio Code.
-- Download Node.js (this link is for Windows and Mac): https://nodejs.org/en/download/current
-- Open the folder in VSCode. </br>
+### `npm start`
 
-From there you can access and write/modify code.</br>
-To view the results of the code, do the following:</br>
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-- Open your terminal (the terminal can also be accessed in VSCode).
-- Navigate to the project folder (Using the "cd" command).
-- Once in the folder, type "npm run start" to start the project. The local host will run on the defeult browser.
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
 
-Express
+### `npm test`
 
-Using the above link for express provides, open your command terminal (cmd) and use the line:
-$ npm install express –save
-To do this, you musty first ensure you have npm installed 
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-To incorporate it in your code, you must ensure it is added as an extension to your project. The example below uses VS Code:
-1. In the Start window (choose File > Start Window to open), select Create a new project.
-2. Search for Express in the search bar at the top and then select JavaScript Express Application.
-3. Give your project and solution a name.
-If you need additional assistance, follow this steps in https://learn.microsoft.com/en-us/visualstudio/javascript/tutorial-nodejs?view=vs-2022
+### `npm run build`
 
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-## Setup
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
-Before you begin, make sure you have the following installed:
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### Prerequisites
+### `npm run eject`
 
-- [Node.js](https://nodejs.org/) - JavaScript runtime
-- [npm](https://www.npmjs.com/) - Node.js package manager
-- [MySQL](https://www.mysql.com/) - Database management system
-  
-### Cloning the Repository
+**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you haven't already, clone this repository to your local machine:
+If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-git clone https://github.com/yourusername/SCCapstone/SystemBreakers
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-## Running
+You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-Once the repo is cloned and the most recent version is pulled, npm start can be used to look at the web application from the current code. 
+## Learn More
 
-In the terminal
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
- -  cd into /<directory_where_repo_is>/ 
-  
-  - npm start
+To learn React, check out the [React documentation](https://reactjs.org/).
 
-# Deployment
+### Code Splitting
 
-We use https://vercel.com/ to deploy our server. To run it you want to log into the main account that is used to deploy the server, you click on system breaker project, then simply click deploy or redeploy(You only have to do that if you change vercel settings). The website auto updates when you push new coach to the main branch.
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-https://system-breakers.vercel.app/
+### Analyzing the Bundle Size
 
-# Testing
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-Tests Pending - Next Semester
+### Making a Progressive Web App
 
-## Testing Technology
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-Tests Pending - Next Semester
+### Advanced Configuration
 
-## Running Tests
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-Tests Pending - Next Semester
+### Deployment
 
-# Authors
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-Charles Castelot castelot@email.sc.edu
+### `npm run build` fails to minify
 
-Antonio Turner antoniow@email.sc.edu
-
-Ayden Owens aydeno@email.sc.edu
-
-Justin Martin justinmmartin01@gmail.com
-
-Valerie Duffey vduffey@email.sc.edu
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
