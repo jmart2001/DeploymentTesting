@@ -1,7 +1,6 @@
 const express = require("express")
 const cors = require("cors")
 const session = require("express-session")
-
 const db = require('./models')
 
 const app = express()
@@ -19,7 +18,7 @@ app.use(session({
     resave: false,
     saveUninitialized: false, 
     cookie: {
-        expires: 24 * 60 * 60,  // 1 day
+        maxAge: 24 * 60 * 60,  // 1 day
     },
 }))
 

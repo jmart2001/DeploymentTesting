@@ -49,8 +49,8 @@ router.post('/login', async (req, res) => {
         if (foundUser) {
             const passwordMatch = await bcrypt.compare(password, foundUser.password)
             if (passwordMatch){
-                req.session.user = foundUser
-                res.json({ message: 'Login successful', user: foundUser })
+                const token = jwt.sign({ userId: foundUser.id }, 'skey', { expiresIn: '24h' });
+                res.json({ message: 'Login successful', token })
             } else {
                 res.status(401).json({ error: 'Invalid credentials' })
             }
@@ -64,14 +64,12 @@ router.post('/login', async (req, res) => {
     }
 })
 
-router.get("/check-login", (req, res) => {
-    console.log('Check login route hit')
-    if (req.session.user) {
-        res.send({ loggedIn: true, user: req.session.user })
-    } else {
-        res.send({ loggedIn: false })
-    }
-})
+const authenticate = require('../middlewares/authenticate');
+
+router.get('/protected-route', authenticate, (req, res) => {
+    // Accessible only if the token is valid
+    res.json({ message: 'Access granted' });
+});
 
 // Logout
 router.post('/logout', (req, res) => {
