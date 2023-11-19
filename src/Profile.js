@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Profile from './Profile';
 
 const ProfilePage = () => {
   const [user, setUser] = useState(null);
@@ -16,7 +15,15 @@ const ProfilePage = () => {
   return (
     <div>
       <h1>My Profile</h1>
-      {user ? <Profile user={user} /> : <p>Loading...</p>}
+      {user ? (
+        <div>
+          <h1>{user.name}</h1>
+          <p>Email: {user.email}</p>
+          {/* place to add more fields later */}
+        </div>
+      ) : (
+        <p>Loading...</p>
+      )}
     </div>
   );
 };
