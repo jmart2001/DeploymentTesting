@@ -12,9 +12,9 @@ const ProfilePage = () => {
       });
     }
   }, [user]);
-  
+
   return (
-    <div className="centered-container">
+    <div className="profile-centering">
       <h1>My Profile</h1>
       {user ? (
         <div>
