@@ -12,16 +12,15 @@ const ProfilePage = () => {
       });
     }
   }, [user]);
-
+  
   return (
-    <div>
-    <div className="profilecentering"></div>
+    <div className="centered-container">
       <h1>My Profile</h1>
       {user ? (
         <div>
           <h1>{user.name}</h1>
           <p>Email: {user.email}</p>
-          {/* place to add more fields later */}
+          {/* Add more fields as needed */}
         </div>
       ) : (
         <p>Loading...</p>
