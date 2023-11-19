@@ -1,22 +1,24 @@
-import "./styles.css";
-import "./Header.css";
-import Header from './Header';
-import React, { useState } from 'react';
+import './App.css';
+import React from 'react'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import Home from './Home'
+import Login from './Login'
+import Register from './Register'
+import PriceComparator from "./Comparer";
 
-function Capstone() {
+function App() {
   return (
-    <a href="https://capstone.cse.sc.edu/milestone/research/#deliverables" target="_blank">
-    <button style = {{color: 'white', fontSize: '20px', background: 'gray'}}>
-      Capstone
-    </button>
-    </a>
-  );
+    <Router>
+      <div>
+        <Routes>
+          <Route path='/' Component={Login}/>
+          <Route path='/register' Component={Register}/>
+          <Route path='/Home' Component={Home}/>
+          <Route path="/Comparator" Component={PriceComparator}/>
+        </Routes>
+      </div>
+    </Router>
+  )
 }
 
-export default function App() {
-  return (
-    <div style={{background: 'lemonchiffon'}} className="App">
-      <h1 style={{background: 'lemonchiffon'}}><Header/></h1>
-    </div>
-  );
-}
+export default App
