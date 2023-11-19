@@ -5,11 +5,13 @@ const ProfilePage = () => {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    setUser({ 
-      name: 'Justin The Best )',
-      email: 'justiniscool@outlook.com',
-    });
-  }, );
+    if (!user) {
+      setUser({
+        name: 'Justin the best',
+        email: 'testing@gmail.com',
+      });
+    }
+  }, [user]);
 
   return (
     <div>
