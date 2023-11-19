@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './App.css'; 
 
 const ProfilePage = () => {
   const [user, setUser] = useState(null);
@@ -14,6 +15,7 @@ const ProfilePage = () => {
 
   return (
     <div>
+    <div className="profilecentering"></div>
       <h1>My Profile</h1>
       {user ? (
         <div>
