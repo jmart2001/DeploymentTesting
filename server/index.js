@@ -1,12 +1,27 @@
 const express = require("express")
 const cors = require("cors")
+const session = require("express-session")
+
+const db = require('./models')
 
 const app = express()
 
-app.use(cors())
 app.use(express.json())
+app.use(cors({
+    origin: ["http://localhost:3000"],
+    methods: ["GET", "POST"],
+    credentials: true
+}))
 
-const db = require('./models')
+app.use(session({
+    key: "userId",
+    secret: "subscribe",
+    resave: false,
+    saveUninitialized: false, 
+    cookie: {
+        expires: 24 * 60 * 60,  // 1 day
+    },
+}))
 
 // Routers
 const userRouter = require('./routes/Users.js')

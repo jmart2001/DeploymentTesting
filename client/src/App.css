@@ -1,41 +1,36 @@
-.App {
+.registration {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  height: 100vh;
+  margin-top: 50px;
 }
 
-.registration,
-.login {
-  border: 1px solid #ccc;
-  padding: 20px;
-  margin: 20px;
-  width: 300px;
-  text-align: center;
+.registration h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
 }
 
-.login input,
-.registration input {
+.label-input {
+  margin-bottom: 15px;
+}
+
+.input-field {
+  width: 200px;
+  padding: 5px;
   margin-bottom: 10px;
 }
 
-.login button,
-.registration button {
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.button {
   background-color: #4caf50;
   color: white;
   padding: 10px;
   border: none;
+  border-radius: 5px;
   cursor: pointer;
-}
-
-.login button:hover,
-.registration button:hover {
-  background-color: #45a049;
-}
-
-.message {
-  color: #ff0000;
-  font-weight: bold;
-  margin-top: 10px;
 }
