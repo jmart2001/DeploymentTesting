@@ -50,20 +50,23 @@ const ProfilePage = () => {
           accept="image/*"
           style={{ display: 'none' }}
         />
-        <button onClick={handleUploadButtonClick}>Upload Image</button>
+        <div>
+          <button onClick={handleUploadButtonClick}>Upload Image</button>
+        </div>
       </div>
       <h1>My Profile</h1>
       {user ? (
         <div>
           <h1>{user.name}</h1>
           <p>Email: {user.email}</p>
-          {/* Add more fields as needed later on in project */}
+          {/* Add more fields as needed later on in the project */}
         </div>
       ) : (
         <p>Loading...</p>
       )}
     </div>
   );
+  
 };
 
 export default ProfilePage;
