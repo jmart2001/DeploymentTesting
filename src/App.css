@@ -49,13 +49,13 @@
   padding-top: 20px;
 }
 
-.profile-centering img {
+.img-button-centering img {
   position: absolute;
   top: 0;
   left: 0;
 }
 
-.profile-centering button {
+.img-button-centering button {
   position: absolute;
   top: 100%;
   left: 0;

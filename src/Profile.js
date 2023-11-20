@@ -34,8 +34,8 @@ const ProfilePage = () => {
   };
 
   return (
-    <div className="top-centered-container">
-      <div>
+    <div className="profile-centering">
+      <div className="img-button-centering">
         {user.profilePicture && (
           <img
             src={user.profilePicture}
@@ -43,15 +43,15 @@ const ProfilePage = () => {
             style={{ width: '100px', borderRadius: '50%', margin: '10px' }}
           />
         )}
-        <input
-          type="file"
-          id="fileInput"
-          onChange={handleImageChange}
-          accept="image/*"
-          style={{ display: 'none' }}
-        />
         <button onClick={handleUploadButtonClick}>Upload Image</button>
       </div>
+      <input
+        type="file"
+        id="fileInput"
+        onChange={handleImageChange}
+        accept="image/*"
+        style={{ display: 'none' }}
+      />
       <h1>My Profile</h1>
       {user ? (
         <div>
@@ -64,6 +64,7 @@ const ProfilePage = () => {
       )}
     </div>
   );
+
 
 };
 
