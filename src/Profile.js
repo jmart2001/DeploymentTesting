@@ -57,15 +57,13 @@ const ProfilePage = () => {
         <div>
           <h1>{user.name}</h1>
           <p>Email: {user.email}</p>
-          {/* Add more fields as needed */}
+          {/* Add more fields as needed later on in project */}
         </div>
       ) : (
         <p>Loading...</p>
       )}
     </div>
   );
-
-
 };
 
 export default ProfilePage;
