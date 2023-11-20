@@ -2,17 +2,11 @@ import React, { useState, useEffect } from 'react';
 import './App.css'; 
 
 const ProfilePage = () => {
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    if (!user) {
-      setUser({
+  const [user, setUser] = useState({
         name: 'Justin the best',
         email: 'testing@gmail.com',
-        profilePicture: null,
-      });
-    }
-  }, [user]);
+        profilePicture: null, // New state for the profile picture
+   });
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
@@ -29,13 +23,15 @@ const ProfilePage = () => {
     }
   };
 
-  const handleUploadButtonClick = () => {
-    document.getElementById('fileInput').click();
-  };
+
 
   useEffect(() => {
     setUser((prevUser) => ({...prevUser,profilePicture: localStorage.getItem('profilePicture'),}));
   }, []);
+
+  const handleUploadButtonClick = () => {
+    document.getElementById('fileInput').click();
+  };
 
   return (
     <div className="profile-centering">
