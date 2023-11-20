@@ -43,9 +43,7 @@ const ProfilePage = () => {
             style={{ width: '100px', borderRadius: '50%', margin: '10px' }}
           />
         )}
-        <div>
-          <button onClick={handleUploadButtonClick}>Upload Image</button>
-        </div>
+        <button onClick={handleUploadButtonClick}>Upload Image</button>
         <input
           type="file"
           id="fileInput"
@@ -66,6 +64,7 @@ const ProfilePage = () => {
       )}
     </div>
   );
+  
   
   
 };
