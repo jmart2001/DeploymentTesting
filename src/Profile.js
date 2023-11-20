@@ -9,6 +9,7 @@ const ProfilePage = () => {
       setUser({
         name: 'Justin the best',
         email: 'testing@gmail.com',
+        profilePicture: null,
       });
     }
   }, [user]);
