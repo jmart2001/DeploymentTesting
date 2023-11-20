@@ -19,6 +19,7 @@ app.use(session({
     saveUninitialized: false, 
     cookie: {
         maxAge: 24 * 60 * 60,  // 1 day
+        httpOnly: true, //reducing the risk of cross-site scripting (XSS) attacks.
     },
 }))
 
