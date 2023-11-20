@@ -33,40 +33,40 @@ const ProfilePage = () => {
     document.getElementById('fileInput').click();
   };
 
-  return (
-    <div className="profile-centering">
-      <div>
-        {user.profilePicture && (
-          <img
-            src={user.profilePicture}
-            alt="Profile"
-            style={{ width: '100px', borderRadius: '50%', margin: '10px' }}
-          />
-        )}
-        <button onClick={handleUploadButtonClick}>Upload Image</button>
-        <input
-          type="file"
-          id="fileInput"
-          onChange={handleImageChange}
-          accept="image/*"
-          style={{ display: 'none' }}
+return (
+  <div className="profile-centering">
+    <div>
+      {user.profilePicture && (
+        <img
+          src={user.profilePicture}
+          alt="Profile"
+          style={{ width: '100px', borderRadius: '50%', margin: '10px' }}
         />
-      </div>
-      <h1>My Profile</h1>
-      {user ? (
-        <div>
-          <h1>{user.name}</h1>
-          <p>Email: {user.email}</p>
-          {/* Add more fields as needed later on in the project */}
-        </div>
-      ) : (
-        <p>Loading...</p>
       )}
+      <input
+        type="file"
+        id="fileInput"
+        onChange={handleImageChange}
+        accept="image/*"
+        style={{ display: 'none' }}
+      />
+      <div>
+        <button onClick={handleUploadButtonClick}>Upload Image</button>
+      </div>
     </div>
-  );
-  
-  
-  
+    <h1>My Profile</h1>
+    {user ? (
+      <div>
+        <h1>{user.name}</h1>
+        <p>Email: {user.email}</p>
+        {/* Add more fields as needed later on in the project */}
+      </div>
+    ) : (
+      <p>Loading...</p>
+    )}
+  </div>
+);
+
 };
 
 export default ProfilePage;
