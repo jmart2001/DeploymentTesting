@@ -5,7 +5,7 @@ const ProfilePage = () => {
   const [user, setUser] = useState({
         name: 'Justin the best',
         email: 'testing@gmail.com',
-        profilePicture: null, // New state for the profile picture
+        profilePicture: null,
    });
 
   const handleImageChange = (event) => {
@@ -36,6 +36,13 @@ const ProfilePage = () => {
   return (
     <div className="profile-centering">
       <div>
+        {user.profilePicture && (
+          <img
+            src={user.profilePicture}
+            alt="Profile"
+            style={{ width: '100px', borderRadius: '50%', margin: '10px' }}
+          />
+        )}
         <input
           type="file"
           id="fileInput"
@@ -44,13 +51,6 @@ const ProfilePage = () => {
           style={{ display: 'none' }}
         />
         <button onClick={handleUploadButtonClick}>Upload Image</button>
-        {user.profilePicture && (
-          <img
-            src={user.profilePicture}
-            alt="Profile"
-            style={{ width: '100px', borderRadius: '50%', margin: '10px' }}
-          />
-        )}
       </div>
       <h1>My Profile</h1>
       {user ? (
@@ -64,6 +64,8 @@ const ProfilePage = () => {
       )}
     </div>
   );
+
+
 };
 
 export default ProfilePage;
