@@ -43,6 +43,9 @@ const ProfilePage = () => {
             style={{ width: '100px', borderRadius: '50%', margin: '10px' }}
           />
         )}
+        <div>
+          <button onClick={handleUploadButtonClick}>Upload Image</button>
+        </div>
         <input
           type="file"
           id="fileInput"
@@ -50,9 +53,6 @@ const ProfilePage = () => {
           accept="image/*"
           style={{ display: 'none' }}
         />
-        <div>
-          <button onClick={handleUploadButtonClick}>Upload Image</button>
-        </div>
       </div>
       <h1>My Profile</h1>
       {user ? (
@@ -66,6 +66,7 @@ const ProfilePage = () => {
       )}
     </div>
   );
+  
   
 };
 
