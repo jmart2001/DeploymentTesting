@@ -18,7 +18,15 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
     })
+
+    Recipe.associate = (models) => {
+      Recipe.hasMany(models.Recipe_Ingredient, {
+          foreignKey: 'recipe_id',
+          onDelete: 'CASCADE',
+          as: 'Recipe_Ingredient', // This alias is important for eager loading
+      });
+  };
   
-    return Recipe;
+    return Recipe
   }
   
