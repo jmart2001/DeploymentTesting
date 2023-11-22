@@ -1,7 +1,8 @@
 const express = require("express")
 const router = express.Router()
-const { Users } = require("../models")
+const { Users, Recipes, UserProfiles } = require("../models")
 const jwt = require('jsonwebtoken')
+const authenticate = require('../middlewares/authenticate');
 const bcrypt = require("bcrypt")
 const saltRounds = 10
 
@@ -26,6 +27,7 @@ router.post('/register', async (req, res) => {
             email: email, 
             password: hashedPassword,
         })
+
         res.status(201).json({ user: newUser })
     } catch (error) {
         // Handle unique constraint violation (username or email already exists)
@@ -39,7 +41,6 @@ router.post('/register', async (req, res) => {
 
 // Login
 router.post('/login', async (req, res) => {
-    console.log('Login route hit')
     const { username, password } = req.body 
     try{
         const foundUser = await Users.findOne({
@@ -49,7 +50,7 @@ router.post('/login', async (req, res) => {
         if (foundUser) {
             const passwordMatch = await bcrypt.compare(password, foundUser.password)
             if (passwordMatch){
-                const token = jwt.sign({ userId: foundUser.id }, 'skey', { expiresIn: '1h' });
+                const token = jwt.sign({ userId: foundUser.id }, 'skey', { expiresIn: '5h' });
                 res.json({ message: 'Login successful', token })
             } else {
                 res.status(401).json({ error: 'Invalid credentials' })
@@ -64,23 +65,85 @@ router.post('/login', async (req, res) => {
     }
 })
 
-const authenticate = require('../middlewares/authenticate');
-
-router.get('/protected-route', authenticate, (req, res) => {
-    // Accessible only if the token is valid
-    res.json({ message: 'Access granted' });
-});
-
 // Logout
-router.post('/logout', (req, res) => {
-    req.session.destroy((err) => {
-        if (err) {
-            return res.status(500).json({ error: 'Internal Server Error' })
+router.post('/logout', authenticate, async (req, res) => {
+    try {
+        await req.session.destroy();
+        res.clearCookie('connect.sid');
+        res.json({ message: 'Logout successful' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+})
+
+router.get('/profile', authenticate, async (req, res) => {
+    try {
+        const user = await Users.findOne({
+            where: { id: req.userId },
+            include: [
+                {
+                    model: UserProfiles,
+                    attributes: ['ingredients'],
+                    as: 'UserProfiles',
+                }
+            ],
+            attributes: ['username','email'],
+        })
+
+        if (!user) {
+            return res.status(404).json({ error: 'User not found' })
         }
 
-        res.clearCookie('connect.sid')
-        res.json({ message: 'Logout successful '})
-    })
+        let responseData
+
+        //Check if the userProfile exist 
+        if (user.UserProfiles && user.UserProfiles.ingredients) {
+            responseData = {
+                username: user.username,
+                email: user.email,
+                ingredients: user.UserProfiles.ingredients,
+            }
+        }
+        else {
+            responseData = {
+                username: user.username,
+                email: user.email,
+                ingredients: null,
+            }
+        }
+
+        res.json(responseData)
+    }
+    catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+router.post('/profile', authenticate, async (req, res) => {
+    try {
+        const { ingredients } = req.body
+
+        const userProfile = await UserProfiles.findOne({
+            where: { user_id: req.userId },
+        })
+
+        if (userProfile) {
+            await userProfile.update({ ingredients })
+        }
+        else {
+            await UserProfiles.create({
+                user_id: req.userId,
+                ingredients,
+            })
+        }
+        res.json({ message: 'Profile updated successfully' })
+    } 
+    catch {
+        console.error(error)
+        res.status(500).json({ error: 'Internal Server Error' })
+    }
 })
 
 module.exports = router

@@ -17,5 +17,13 @@ module.exports = (sequelize, DataTypes) => {
         }
     })
 
+    Users.associate = (models) => {
+        Users.hasOne(models.UserProfiles, {
+            foreignKey: 'user_id',
+            onDelete: 'CASCADE',
+            as: 'UserProfiles', // This alias is important for eager loading
+        });
+    };
+
     return Users
 }

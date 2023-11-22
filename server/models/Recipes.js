@@ -1,5 +1,3 @@
-// models/Recipe.js
-
 module.exports = (sequelize, DataTypes) => {
     const Recipe = sequelize.define("Recipe", {
       title: {
@@ -19,8 +17,8 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
-    });
+    })
   
     return Recipe;
-  };
+  }
   

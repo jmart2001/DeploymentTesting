@@ -1,20 +1,33 @@
 const jwt = require('jsonwebtoken');
 
-const authenticate = (req, res, next) => {
-    const token = req.headers.authorization;
+const BEARER_PREFIX = 'Bearer';
+const SECRET_KEY = 'skey';
 
-    if (!token) {
-        return res.status(401).json({ error: 'Unauthorized: No token provided' });
+const authenticate = (req, res, next) => {
+    const authHeader = req.headers.authorization
+
+    if (!authHeader) {
+        return res.status(401).json({ error: 'Unauthorized: No token provided' })
     }
 
-    jwt.verify(token, 'skey', (err, decoded) => {
+    // Check if the header starts with "Bearer "
+    const [bearer, token] = authHeader.split(' ')
+
+    if (bearer !== BEARER_PREFIX || !token) {
+        return res.status(401).json({ error: 'Unauthorized: Malformed token' })
+    }
+
+    //console.log('Received token:', token)
+
+    jwt.verify(token, SECRET_KEY, (err, decoded) => {
         if (err) {
-            return res.status(401).json({ error: 'Unauthorized: Invalid token' });
+            console.log('Invalid token:', err.message)
+            return res.status(401).json({ error: `Unauthorized: ${err.message}` })
         }
 
-        req.userId = decoded.userId;
-        next();
-    });
-};
+        req.userId = decoded.userId
+        next()
+    })
+}
 
-module.exports = authenticate;
+module.exports = authenticate
