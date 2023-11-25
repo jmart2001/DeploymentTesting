@@ -1,9 +1,9 @@
 const express = require("express")
 const router = express.Router()
-const { Users, Recipes, UserProfiles } = require("../models")
+const { Users, Recipe, Recipe_Ingredient, FridgeIngredient, Sequelize  } = require("../models")
 const jwt = require('jsonwebtoken')
 const authenticate = require('../middlewares/authenticate');
-const bcrypt = require("bcrypt")
+const bcrypt = require("bcrypt");
 const saltRounds = 10
 
 
@@ -79,38 +79,19 @@ router.post('/logout', authenticate, async (req, res) => {
 
 router.get('/profile', authenticate, async (req, res) => {
     try {
+        //Check if the user exists
         const user = await Users.findOne({
             where: { id: req.userId },
-            include: [
-                {
-                    model: UserProfiles,
-                    attributes: ['ingredients'],
-                    as: 'UserProfiles',
-                }
-            ],
-            attributes: ['username','email'],
+            attributes: ['username', 'email']
         })
 
-        if (!user) {
+        if(!user) {
             return res.status(404).json({ error: 'User not found' })
         }
 
-        let responseData
-
-        //Check if the userProfile exist 
-        if (user.UserProfiles && user.UserProfiles.ingredients) {
-            responseData = {
-                username: user.username,
-                email: user.email,
-                ingredients: user.UserProfiles.ingredients,
-            }
-        }
-        else {
-            responseData = {
-                username: user.username,
-                email: user.email,
-                ingredients: null,
-            }
+        const responseData = {
+            username: user.username,
+            email: user.email,
         }
 
         res.json(responseData)
@@ -121,28 +102,92 @@ router.get('/profile', authenticate, async (req, res) => {
     }
 });
 
-router.post('/profile', authenticate, async (req, res) => {
+router.post('/profile_ingredient_list', authenticate, async (req, res) => {
+    console.log('hit post ingredient_list route')
+    console.log('Request payload:', req.body)
     try {
-        const { ingredients } = req.body
+      const { name, quantity } = req.body;
 
-        const userProfile = await UserProfiles.findOne({
+      const trimmedIngredientName = name.trim()
+
+      console.log('trimmedIngredientName:', trimmedIngredientName)
+
+      const recipeIngredient = await Recipe_Ingredient.findOne({
+        where: { 
+            name: {
+                [Sequelize.Op.like]: `%${trimmedIngredientName}%`, 
+            },
+        },
+      })
+
+      if (recipeIngredient) {
+        console.log('Recipe Ingredient:', recipeIngredient.name)
+      }
+      else {
+        console.error('Recipe ingredient not found for: ', trimmedIngredientName)
+        res.status(404).json({ error: 'Recipe ingredient not found.' })
+        return
+      }
+
+      
+      const userProfile = await FridgeIngredient.findOrCreate({
+        where: { user_id: req.userId },
+        defaults: {
+          quantity: quantity,
+          ingredients_id: recipeIngredient.id,
+        },
+      })
+    
+      console.log('Recipe Ingredient ID:', recipeIngredient.id)
+
+      // handle case if the user profile already has the ingrendient 
+      if (userProfile) {
+        //console.log('User already has this ingredient!')
+        console.log('insert into the table: ' + recipeIngredient.id)
+        // Create a new FridgeIngredient instance
+        const newFridgeIngredient = await FridgeIngredient.create({
+            user_id: req.userId,
+            quantity: quantity,
+            ingredients_id: recipeIngredient.id,
+        })
+      } 
+         
+
+      res.json({ message: 'Fridge updated successfully' })
+    } 
+    catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+})
+
+router.get('/saved_ingredients', authenticate, async (req, res) => {
+    console.log('hit get_ingredient_list route');
+    
+    try {
+        const userProfile = await FridgeIngredient.findOne({
             where: { user_id: req.userId },
+                include: [
+                    {
+                    model: Recipe_Ingredient,
+                    as: 'Recipe_Ingredient',
+                    attributes: ['name'],
+                    },
+                ],
         })
 
-        if (userProfile) {
-            await userProfile.update({ ingredients })
+        if (userProfile && userProfile.Recipe_Ingredient) {
+            const savedIngredients = userProfile.Recipe_Ingredients.map(ingredient => ingredient.name)
+            res.json({ savedIngredients })
+
+        } else {2
+            // no FridgeIngredient entry exists
+            console.error('User profile not found.')
+            res.status(404).json({ error: 'User profile not found.' })
         }
-        else {
-            await UserProfiles.create({
-                user_id: req.userId,
-                ingredients,
-            })
-        }
-        res.json({ message: 'Profile updated successfully' })
-    } 
-    catch {
+    } catch (error) {
         console.error(error)
-        res.status(500).json({ error: 'Internal Server Error' })
+        res.status(500).json({ error: 'Internal Server Error' });
     }
 })
 

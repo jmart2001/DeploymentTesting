@@ -26,6 +26,8 @@ app.use(session({
 // Routers
 const userRouter = require('./routes/Users.js')
 app.use('/users', userRouter)
+const recipeRouter = require('./routes/Recipe.js')
+app.use('/recipe', recipeRouter)
 
 db.sequelize.sync().then(() => {
     app.listen(3001, () => {
