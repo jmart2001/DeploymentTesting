@@ -5,10 +5,8 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import Home from './Home'
 import Login from './pages/Login'
-import Register from './Register'
 import Profile from './pages/Profile'
 import FrontPage from './FrontPage';
-import Login from './Login';
 import Register from './Register';
 import Header from './Header';
 import Footer from './Footer';
