@@ -1,10 +1,10 @@
-import './App.css';
+//import './App.css';
 import "./styles.css";
 //import React from 'react'
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import Home from './Home'
-import Login from './pages/Login'
+import Login from './Login'
 import Profile from './pages/Profile'
 import FrontPage from './FrontPage';
 import Register from './Register';
