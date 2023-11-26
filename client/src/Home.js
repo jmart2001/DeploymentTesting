@@ -1,15 +1,14 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 function Home() {
     
     return (
         <div>
-            <nav>
-                <Link to="/profile">Profile</Link>
-            </nav>
             <div>
-                <h1>Hello Capstone</h1>
+                <h1>Welcome to What to Cook</h1>
             </div>
         </div>
     )
