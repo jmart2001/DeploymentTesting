@@ -1,41 +1,81 @@
-// src/Login.js
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import Axios from 'axios';
+import { Link, useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie'
 
-function Login() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
 
-  const handleLogin = async () => {
-    try {
-      const response = await axios.post('http://localhost:3000/api/login', { username, password }, { withCredentials: true });
+const Login = () => {
+    const [usernameLog, setUsernameLog] = useState("");
+    const [passwordLog, setPasswordLog] = useState("");
+    const [loginStatus, setLoginStatus] = useState("");
 
-      if (response.status === 200) {
-        alert('Login successful!');
-        // Redirect or perform additional actions on successful login
-      } else {
-        alert('Login failed. Please check your credentials.');
-      }
-    } catch (error) {
-      console.error('Login error:', error);
-      alert('An error occurred during login.');
+    const navigate = useNavigate();
+
+    const handleLogin = async () => {
+        if (!usernameLog || !passwordLog) {
+            setLoginStatus("Please enter both username and password")
+            return
+        }
+
+        try {
+            const response = await Axios.post("http://localhost:3001/users/login", {
+                username: usernameLog,
+                password: passwordLog,
+            }, { withCredentials: true })
+
+            console.log(response)
+            console.log(response.data.message)
+            
+            const { token } = response.data
+            
+            Cookies.set('userToken', token, { expires: 1 })
+            
+            setLoginStatus(response.data.message)
+            navigate('/Home')
+        } 
+        catch (error){
+            console.error(error);
+            setLoginStatus("Error during login");
+        };
     }
-  };
 
-  return (
-    <div>
-      <h2>Login</h2>
-      <form>
-        <label>Username:</label>
-        <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+    // useEffect(()=> {
+    //     Axios.get("http://localhost:3001/users/check-login")
+    //         .then((response) => {
+    //             if (response.data.loggedIn === true) {
+    //                 setLoginStatus(response.data.user.username)
+    //             }    
+    //     })
+    //     .catch((error) => {
+    //         console.error("Error checking login status:", error)
+    //         setLoginStatus("Error checking login status")
+    //     })
+    // }, [])
 
-        <label>Password:</label>
-        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-
-        <button type="button" onClick={handleLogin}>Login</button>
-      </form>
-    </div>
-  );
+    return (
+        <div className="login">
+            <h1>Login</h1>
+            <input 
+                type="text" 
+                placeholder="Username ..."
+                onChange={(e) => {
+                    setUsernameLog(e.target.value);
+                }}
+            />
+            <input 
+                type="password" 
+                placeholder="Password ..."
+                onChange={(e) => {
+                    setPasswordLog(e.target.value);
+                }}
+            />
+            <button onClick={handleLogin}>Login</button>
+            <div>
+                <Link to="/register">Register</Link>
+            </div>
+            <p className="message">{loginStatus}</p>
+        </div>       
+    )
 }
 
 export default Login;

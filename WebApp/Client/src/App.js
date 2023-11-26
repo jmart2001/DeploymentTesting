@@ -1,17 +1,21 @@
+import './App.css';
 import "./styles.css";
+import React from 'react'
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Home from './Home';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import Home from './Home'
+import Login from './Login'
+import Register from './Register'
+import Profile from './Profile'
 import FrontPage from './FrontPage';
 import Login from './Login';
 import Register from './Register';
 import Header from './Header';
 import Footer from './Footer';
-import Recipes from './pages/Recipes';
-import PriceComp from './pages/PriceComp';
-import Profile from './pages/Profile';
-import Contact from './pages/Contact';
-import About from './pages/About';
+import Recipes from './Recipes';
+import PriceComp from './PriceComp';
+import Contact from './Contact';
+import About from './About';
 //npm install react-router-dom
 
 function App() {
@@ -35,5 +39,4 @@ function App() {
     </Router>
   );
 }
-
 export default App
