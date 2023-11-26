@@ -1,0 +1,54 @@
+.registration {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.registration h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.label-input {
+  margin-bottom: 15px;
+  font-size: 16px; /* Adjusted font size for labels */
+}
+
+.input-field {
+  width: 100%; /* Adjusted width to fill the container */
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.button {
+  background-color: #4caf50;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+ul {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+li {
+  background-color: #f0f0f0;
+  padding: 8px;
+  margin: 4px 0;
+  border-radius: 4px;
+}
