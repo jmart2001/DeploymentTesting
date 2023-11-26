@@ -129,28 +129,29 @@ router.post('/profile_ingredient_list', authenticate, async (req, res) => {
         return
       }
 
-      
-      const userProfile = await FridgeIngredient.findOrCreate({
-        where: { user_id: req.userId },
-        defaults: {
-          quantity: quantity,
-          ingredients_id: recipeIngredient.id,
+      // Check if the ingredient already exists in the user's profile
+      const [userProfile, created] = await FridgeIngredient.findOrCreate({
+        where: { 
+            user_id: req.userId,
+            ingredients_id: recipeIngredient.id,
         },
+        defaults: {
+            quantity: quantity,
+          },
       })
     
       console.log('Recipe Ingredient ID:', recipeIngredient.id)
 
       // handle case if the user profile already has the ingrendient 
-      if (userProfile) {
+      if (!created) {
         //console.log('User already has this ingredient!')
-        console.log('insert into the table: ' + recipeIngredient.id)
+        await userProfile.update({ quantity: quantity })
+        console.log('Quantity updated for existing ingredient:', recipeIngredient.id)
+      }
+      else{
+
+      }
         // Create a new FridgeIngredient instance
-        const newFridgeIngredient = await FridgeIngredient.create({
-            user_id: req.userId,
-            quantity: quantity,
-            ingredients_id: recipeIngredient.id,
-        })
-      } 
          
 
       res.json({ message: 'Fridge updated successfully' })
@@ -165,22 +166,24 @@ router.get('/saved_ingredients', authenticate, async (req, res) => {
     console.log('hit get_ingredient_list route');
     
     try {
-        const userProfile = await FridgeIngredient.findOne({
+        const userProfile = await FridgeIngredient.findAll({
             where: { user_id: req.userId },
-                include: [
-                    {
+            include: [
+                {
                     model: Recipe_Ingredient,
                     as: 'Recipe_Ingredient',
                     attributes: ['name'],
-                    },
-                ],
+                },
+            ],
         })
 
-        if (userProfile && userProfile.Recipe_Ingredient) {
-            const savedIngredients = userProfile.Recipe_Ingredients.map(ingredient => ingredient.name)
+        if (userProfile && userProfile.length > 0) {
+            const savedIngredients = userProfile.map(entry => ({
+                name: entry.Recipe_Ingredient.name,
+                quantity: entry.quantity,
+            }))
             res.json({ savedIngredients })
-
-        } else {2
+        } else {
             // no FridgeIngredient entry exists
             console.error('User profile not found.')
             res.status(404).json({ error: 'User profile not found.' })
@@ -188,6 +191,66 @@ router.get('/saved_ingredients', authenticate, async (req, res) => {
     } catch (error) {
         console.error(error)
         res.status(500).json({ error: 'Internal Server Error' });
+    }
+})
+
+router.delete('/delete_ingredient', authenticate, async (req,res) => {
+    console.log('hit the delete route')
+    try {
+        const { name } = req.body
+
+        console.log('Deleting ingredient with name:', name)
+
+        const recipeIngredient = await Recipe_Ingredient.findOne({
+            where: { 
+                name: {
+                    [Sequelize.Op.like]: `%${name}`,
+                }, 
+            },
+        }) 
+
+        if (!recipeIngredient) {
+            console.error('Recipe ingredient not found for: ', name)
+            return res.status(404).json({ error: 'Recipe ingredient not found.' })
+        }
+
+        const deletedRows = await FridgeIngredient.destroy({
+            where: {
+                user_id: req.userId,
+                ingredients_id: recipeIngredient.id,
+            },
+        })
+
+        if (deletedRows > 0){
+            console.log('Ingredient deleted successfully from Fridge.')
+            const updatedUserProfile = await FridgeIngredient.findAll({
+                where: { user_id: req.userId },
+                include: [
+                    {
+                        model: Recipe_Ingredient,
+                        as: 'Recipe_Ingredient',
+                        attributes: ['name'],
+                    },
+                ],
+            })
+
+            const updatedSavedIngredients = updatedUserProfile.map(
+                (entry) => ({
+                    name: entry.Recipe_Ingredient.name,
+                    quantity: entry.quantity,
+                })
+            )
+
+            return res.json({ savedIngredients: updatedSavedIngredients })
+        }
+        else {
+            console.error('Ingredient not found in user profile')
+            return res.status(404).json({ error: 'Ingredient not found in user profile.' })
+        }
+    }
+    catch(error) {
+        console.error(error)
+        res.status(500).json({ error: 'Internal Server Error' })
     }
 })
 

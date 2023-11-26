@@ -40,3 +40,15 @@
   cursor: pointer;
   font-size: 16px;
 }
+
+ul {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+li {
+  background-color: #f0f0f0;
+  padding: 8px;
+  margin: 4px 0;
+  border-radius: 4px;
+}

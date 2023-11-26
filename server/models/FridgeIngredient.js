@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
             onDelete: 'CASCADE'
         });
         FridgeIngredient.belongsTo(models.Recipe_Ingredient, {
-            foreignKey: 'id',
+            foreignKey: 'ingredients_id',
             onDelete: 'CASCADE'
         });
     };

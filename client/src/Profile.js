@@ -27,8 +27,8 @@ const Profile = () => {
     const { username = '', email = ''} = userData || {}
     
     const [savedIngredients, setSavedIngredients] = useState([])
-    const [ingredientName, setIngredientName] = useState('');
-    const [ingredientQuantity, setIngredientQuantity] = useState('');
+    const [ingredientName, setIngredientName] = useState('')
+    const [ingredientQuantity, setIngredientQuantity] = useState('')
 
 
     const handleSaveIngredients = async () => {
@@ -57,7 +57,8 @@ const Profile = () => {
           }
         )
         console.log(response.data)
-        //setSavedIngredients(response.data.updatedIngredients)
+        // Update the saved ingredients list after a successful save
+        setSavedIngredients(response.data.savedIngredients)
         setIngredientName('')
         setIngredientQuantity('')
       }
@@ -77,7 +78,11 @@ const Profile = () => {
                   Authorization: `Bearer ${Cookies.get('userToken')}`,
                 },
               })
+              console.log('Response Data:', response.data)
               setSavedIngredients(response.data.savedIngredients)
+              setIngredientName('')
+              setIngredientQuantity('')
+              
             }
             catch (error) {
               console.error(error)
@@ -87,6 +92,28 @@ const Profile = () => {
           fetchSavedIngredients()
           
         }, [])
+
+      const handleDeleteIngredient = async (ingredientName) => {
+        try{
+          const response = await Axios.delete(
+            'http://localhost:3001/users/delete_ingredient',
+            {
+              withCredentials: true,
+              headers: {
+                Authorization: `Bearer ${Cookies.get('userToken')}`,
+              },
+              data: {
+                name: ingredientName,
+              },
+            }
+          )
+          console.log(response.data)
+          setSavedIngredients(response.data.savedIngredients)
+        }
+        catch (error) {
+          console.error(error)
+        }
+      }
 
     return (
         <div>
@@ -117,10 +144,15 @@ const Profile = () => {
           <div>
             <h3>Saved Ingredients:</h3>
             <ul>
-              {savedIngredients.map((ingredient, index) => (
-                    <li key={index}>{ingredient}</li>
-              ))}
-              <button>Delete</button>
+              {savedIngredients &&
+                savedIngredients.map((ingredient, index) => (
+                  <li key={index}>
+                    {ingredient.name} - {ingredient.quantity}
+                    <button onClick={() => handleDeleteIngredient(ingredient.name)}>
+                      Delete
+                    </button>
+                  </li>
+                ))}
             </ul>
           </div>            
         </div>
