@@ -5,6 +5,7 @@ import Home from './Home'
 import Login from './Login'
 import Register from './Register'
 import Profile from './Profile'
+import DietaryRestrictions from './DietaryRestrictions'
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path='/register' Component={Register}/>
           <Route path='/Home' Component={Home}/>
           <Route path='/Profile' Component={Profile}/>
+          <Route path='/DietaryRestrictions' Component={DietaryRestrictions}/>
         </Routes>
       </div>
     </Router>
