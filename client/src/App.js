@@ -18,7 +18,6 @@ function App() {
   return (
     <Router>
       <div style={{background: 'sandybrown'}} className="App">
-      <Header/>
         <Routes>
           <Route path="/login" Component={Login}/>
           <Route path="/register" Component={Register}/>
