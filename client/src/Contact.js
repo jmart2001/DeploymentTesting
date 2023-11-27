@@ -66,10 +66,10 @@ import axios from 'axios';
 
 function Contact() {
     return(
-        <div> 
-            <h1 style={{fontSize:'30px'}}> Let's Talk</h1>
+        <div style={{textAlign:'center', font:'cursive'}}> 
+            <h1 style={{fontSize:'35px'}}> Let's Talk</h1>
             <h2>Email us at </h2>
-            <h2 style={{fontSize:'25px'}}> systembreakersusc@gmail.com</h2>
+            <h2 style={{fontSize:'30px'}}> systembreakersusc@gmail.com</h2>
         </div>
     );
 }
