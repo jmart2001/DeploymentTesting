@@ -48,7 +48,7 @@ const Contact = () => {
         value={formData.email}
         onChange={handleChange}
       />
-<div> 
+<div style={{fontSize:'30px'}}> 
       <label htmlFor="message">Message:</label>
       <textarea
         id="message"
@@ -58,7 +58,7 @@ const Contact = () => {
       />
 
       <button type="submit">Submit</button>
-      </div>
+    </div>
     </form>
   );
 };
