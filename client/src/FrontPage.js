@@ -4,6 +4,9 @@ import { Link } from 'react-router-dom';
 function FrontPage() {
     return (
         <div style={{textAlign:'center',fontFamily:'cursive',}}>
+            <div>
+                <h1>Welcome to What to Cook</h1>
+            </div>
             <nav>
                 <ul>
                     <a>
@@ -22,9 +25,6 @@ function FrontPage() {
                     </a>
                 </ul>
             </nav>
-            <div>
-                <h1>Welcome to What to Cook</h1>
-            </div>
         </div>
     )
 }
