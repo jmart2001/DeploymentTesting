@@ -2,10 +2,6 @@ const express = require("express")
 const cors = require("cors")
 const session = require("express-session")
 const db = require('./models')
-<<<<<<< HEAD
-
-const app = express()
-=======
 const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
 
@@ -37,7 +33,6 @@ app.use(bodyParser.json());
 //     res.status(500).json({ message: 'Error sending email' });
 //   }
 // })
->>>>>>> c60e6ec0bc497e8fb3f71975dfaeaad204e000c0
 
 app.use(express.json())
 app.use(cors({
