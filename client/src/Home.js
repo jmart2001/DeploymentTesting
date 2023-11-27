@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 function Home() {
     
     return (
-        <div>
+        <div style={{textAlign:'center'}}>
             <div>
                 <h1>Welcome to What to Cook</h1>
             </div>

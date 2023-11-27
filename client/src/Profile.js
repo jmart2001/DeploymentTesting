@@ -116,7 +116,7 @@ const Profile = () => {
       }
 
     return (
-        <div>
+        <div style={{textAlign:'center'}}>
             <h1>Profile Page</h1>
             <div className='Account Information'>
                 <h2>Username: {username}</h2>
