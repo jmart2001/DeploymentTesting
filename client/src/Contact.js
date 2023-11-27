@@ -69,7 +69,7 @@ function Contact() {
         <div style={{textAlign:'center', font:'cursive'}}> 
             <h1 style={{fontSize:'35px'}}> Let's Talk</h1>
             <h2>Email us at </h2>
-            <h2 style={{fontSize:'30px'}}> systembreakersusc@gmail.com</h2>
+            <h2 style={{fontSize:'30px'}}> <Link> systembreakersusc@gmail.com</Link></h2>
         </div>
     );
 }
