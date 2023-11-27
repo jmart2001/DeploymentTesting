@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Header from './Header';
+import Footer from './Footer';
 
 function About() {
     return (
@@ -31,7 +32,7 @@ function About() {
                 <h2 style = {{size: '25px'}}> Charles Castelot</h2>
                 <h3> My name is Charles Castelot. I am a senior at the University of South Carolina, with a major in computer engineering. I was born in Santiago, Chile, and raises in France since the age of 3. At 16 years old, I continued my studies in Canada, where I learned English. After finishing CEGEP, I continued my engineering studies at my current university in the U.S.</h3>
             </div>
-
+        <Footer/>
         </div>
     )
 }

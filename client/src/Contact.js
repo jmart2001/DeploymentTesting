@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import Header from './Header';
+import Footer from './Footer';
 
 // const Contact = () => {
 //   const [formData, setFormData] = useState({
@@ -67,9 +69,11 @@ import axios from 'axios';
 function Contact() {
     return(
         <div style={{textAlign:'center', font:'cursive'}}> 
+        <Header/>
             <h1 style={{fontSize:'35px'}}> Let's Talk</h1>
             <h2>Email us at </h2>
             <h2 style={{fontSize:'30px'}}> <Link to="https://mail.google.com/mail/u/0/#inbox?compose=GTvVlcSHwCsBHCNkLDWHFHhbgzTLvtCxtfnMlMKnbPhsGbRqxLTMDqqgDMvGjjHrPPtcwgrkpSGKn"> systembreakersusc@gmail.com</Link></h2>
+        <Footer/>
         </div>
     );
 }
