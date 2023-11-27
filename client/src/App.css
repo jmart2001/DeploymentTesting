@@ -1,3 +1,24 @@
+/* Global Styles */
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f8f8f8;
+}
+
+nav {
+  background-color: #333;
+  padding: 10px;
+  text-align: center;
+}
+
+nav a {
+  color: white;
+  margin: 0 10px;
+  text-decoration: none;
+}
+
+/* Form Styles */
 .registration {
   display: flex;
   flex-direction: column;
@@ -12,17 +33,26 @@
 
 .label-input {
   margin-bottom: 15px;
-  font-size: 16px; /* Adjusted font size for labels */
+  font-size: 16px;
 }
 
 .input-field {
-  width: 100%; /* Adjusted width to fill the container */
+  width: 100%;
   padding: 10px;
   margin-bottom: 15px;
   border: 1px solid #ccc;
   border-radius: 5px;
   box-sizing: border-box;
   font-size: 16px;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+}
+
+.checkbox-label input {
+  margin-right: 8px;
 }
 
 .error-message {
@@ -41,6 +71,7 @@
   font-size: 16px;
 }
 
+/* List Styles */
 ul {
   font-size: 18px;
   font-weight: bold;
@@ -51,4 +82,13 @@ li {
   padding: 8px;
   margin: 4px 0;
   border-radius: 4px;
+}
+
+.saved-restrictions {
+  margin-top: 20px;
+}
+
+.saved-restriction-item {
+  margin-bottom: 8px;
+  font-size: 16px;
 }
