@@ -73,11 +73,13 @@ const Login = () => {
             {/* <div>
                 <Link to="/register">Register</Link>
             </div> */}
-            <Link to="/register">
-                <button style={{fontFamily: 'cursive',fontSize: '30px'}}>
-                    Register
-                </button>
-            </Link>
+            <div> 
+                <Link to="/register">
+                    <button style={{fontFamily: 'cursive'}}>
+                        Register
+                    </button>
+                </Link>
+            </div>
             <p className="message">{loginStatus}</p>
         </div>       
     )
