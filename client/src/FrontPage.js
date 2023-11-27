@@ -3,19 +3,19 @@ import { Link } from 'react-router-dom';
 
 function FrontPage() {
     return (
-        <div>
+        <div style={{textAlign:'center',fontFamily:'cursive',}}>
             <nav>
                 <ul>
                     <a>
                         <Link to="/login">
-                        <button style={{fontFamily: 'cursive',fontSize: '25px'}}>
+                        <button style={{fontFamily: 'cursive',fontSize: '30px'}}>
                             Login
                         </button>
                         </Link>
                     </a>
                     <a>
                         <Link to="/register">
-                        <button style={{fontFamily: 'cursive',fontSize: '25px'}}>
+                        <button style={{fontFamily: 'cursive',fontSize: '30px'}}>
                             Register
                         </button>
                         </Link>
