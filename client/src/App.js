@@ -18,7 +18,6 @@ function App() {
   return (
     <Router>
       <div style={{background: 'sandybrown'}} className="App">
-      <Header/>
         <Routes>
           <Route path="/login" Component={Login}/>
           <Route path="/register" Component={Register}/>
@@ -30,7 +29,6 @@ function App() {
           <Route path="/contactus" Component={Contact}/>
           <Route path="/about" Component={About}/>
         </Routes>
-        <Footer/>
       </div>
     </Router>
   );

@@ -53,7 +53,7 @@ const Login = () => {
     // }, [])
 
     return (
-        <div className="login">
+        <div className="login" style={{textAlign:'center',fontFamily:'cursive',}}>
             <h1>Login</h1>
             <input 
                 type="text" 
@@ -70,8 +70,15 @@ const Login = () => {
                 }}
             />
             <button onClick={handleLogin}>Login</button>
-            <div>
+            {/* <div>
                 <Link to="/register">Register</Link>
+            </div> */}
+            <div> 
+                <Link to="/register">
+                    <button style={{fontFamily: 'cursive'}}>
+                        Register
+                    </button>
+                </Link>
             </div>
             <p className="message">{loginStatus}</p>
         </div>       
