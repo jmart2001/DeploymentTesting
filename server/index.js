@@ -5,6 +5,7 @@ const db = require('./models')
 const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
 
+const app = express()
 const port = process.env.PORT || 3001;
 
 app.use(bodyParser.json());
