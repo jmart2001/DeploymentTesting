@@ -6,7 +6,7 @@ function About() {
         <div>
             <div>
                 <h1 style = {{size:'30px'}}>About Us</h1>
-                <h1>At WhatToCook, our mission is to simplify your cooking experiences. Input your fridge's ingredients, and our recipe generator will create delicious meals just for you. Plus, our price comparer helps you find the best deals on ingredients, making your kitchen adventures both tasty and budget-friendly.</h1>
+                <h1 style = {{background: 'ivory', margin:'10px'}}>At WhatToCook, our mission is to simplify your cooking experiences. Input your fridge's ingredients, and our recipe generator will create delicious meals just for you. Plus, our price comparer helps you find the best deals on ingredients, making your kitchen adventures both tasty and budget-friendly.</h1>
                 <h1 style = {{size:'30px'}}> Meet the Creators </h1>
             </div>
             <div style = {{background: 'ivory', margin:'10px'}}>
@@ -23,10 +23,11 @@ function About() {
             </div>
             <div style = {{background: 'ivory', margin:'10px'}}>   
                 <h2 style = {{size: '25px'}}> Adyen Owens</h2>
+                <h3> Ayden is a senior currently pursuing his degree in Computer Engineering at the University of South Carolina. Ayden's love for STEM and astrophysics shines through in his work and dedication. Beyond his studies, he actively engages in various extracurricular activities, including his involvement in the IEEE club and the SOU Professional Business Fraternity. As a Peer Leader at the UofSC Student Success Center, Ayden demonstrates his genuine passion for helping others, making him an invaluable asset to our team.</h3>
             </div>
             <div style = {{background: 'ivory', margin:'10px'}}>
                 <h2 style = {{size: '25px'}}> Charles Castelot</h2>
-            
+                <h3> My name is Charles Castelot. I am a senior at the University of South Carolina, with a major in computer engineering. I was born in Santiago, Chile, and raises in France since the age of 3. At 16 years old, I continued my studies in Canada, where I learned English. After finishing CEGEP, I continued my engineering studies at my current university in the U.S.</h3>
             </div>
 
         </div>
