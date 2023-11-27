@@ -6,7 +6,7 @@ function About() {
         <div>
             <div>
                 <h1 style = {{size:'30px'}}>About Us</h1>
-                <h1 style = {{background: 'ivory', margin:'10px', size: "20px"}}>At WhatToCook, our mission is to simplify your cooking experiences. Input your fridge's ingredients, and our recipe generator will create delicious meals just for you. Plus, our price comparer helps you find the best deals on ingredients, making your kitchen adventures both tasty and budget-friendly.</h1>
+                <h1 style = {{background: 'ivory', margin:'10px', size: '20px'}}>At WhatToCook, our mission is to simplify your cooking experiences. Input your fridge's ingredients, and our recipe generator will create delicious meals just for you. Plus, our price comparer helps you find the best deals on ingredients, making your kitchen adventures both tasty and budget-friendly.</h1>
                 <h1 style = {{size:'30px'}}> Meet the Creators </h1>
             </div>
             <div style = {{background: 'ivory', margin:'10px'}}>
