@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* Global Styles */
 body {
   font-family: 'Arial', sans-serif;
@@ -19,6 +20,8 @@ nav a {
 }
 
 /* Form Styles */
+=======
+>>>>>>> c60e6ec0bc497e8fb3f71975dfaeaad204e000c0
 .registration {
   display: flex;
   flex-direction: column;
@@ -33,11 +36,19 @@ nav a {
 
 .label-input {
   margin-bottom: 15px;
+<<<<<<< HEAD
   font-size: 16px;
 }
 
 .input-field {
   width: 100%;
+=======
+  font-size: 16px; /* Adjusted font size for labels */
+}
+
+.input-field {
+  width: 100%; /* Adjusted width to fill the container */
+>>>>>>> c60e6ec0bc497e8fb3f71975dfaeaad204e000c0
   padding: 10px;
   margin-bottom: 15px;
   border: 1px solid #ccc;
@@ -46,6 +57,7 @@ nav a {
   font-size: 16px;
 }
 
+<<<<<<< HEAD
 .checkbox-label {
   display: flex;
   align-items: center;
@@ -55,6 +67,8 @@ nav a {
   margin-right: 8px;
 }
 
+=======
+>>>>>>> c60e6ec0bc497e8fb3f71975dfaeaad204e000c0
 .error-message {
   color: red;
   font-size: 14px;
@@ -71,7 +85,10 @@ nav a {
   font-size: 16px;
 }
 
+<<<<<<< HEAD
 /* List Styles */
+=======
+>>>>>>> c60e6ec0bc497e8fb3f71975dfaeaad204e000c0
 ul {
   font-size: 18px;
   font-weight: bold;
@@ -83,6 +100,7 @@ li {
   margin: 4px 0;
   border-radius: 4px;
 }
+<<<<<<< HEAD
 
 .saved-restrictions {
   margin-top: 20px;
@@ -92,3 +110,5 @@ li {
   margin-bottom: 8px;
   font-size: 16px;
 }
+=======
+>>>>>>> c60e6ec0bc497e8fb3f71975dfaeaad204e000c0

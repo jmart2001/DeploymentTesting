@@ -53,7 +53,11 @@ const Login = () => {
     // }, [])
 
     return (
+<<<<<<< HEAD
         <div className="login">
+=======
+        <div className="login" style={{textAlign:'center',fontFamily:'cursive',}}>
+>>>>>>> c60e6ec0bc497e8fb3f71975dfaeaad204e000c0
             <h1>Login</h1>
             <input 
                 type="text" 
@@ -70,8 +74,20 @@ const Login = () => {
                 }}
             />
             <button onClick={handleLogin}>Login</button>
+<<<<<<< HEAD
             <div>
                 <Link to="/register">Register</Link>
+=======
+            {/* <div>
+                <Link to="/register">Register</Link>
+            </div> */}
+            <div> 
+                <Link to="/register">
+                    <button style={{fontFamily: 'cursive'}}>
+                        Register
+                    </button>
+                </Link>
+>>>>>>> c60e6ec0bc497e8fb3f71975dfaeaad204e000c0
             </div>
             <p className="message">{loginStatus}</p>
         </div>       
