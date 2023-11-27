@@ -48,6 +48,7 @@ const Contact = () => {
         value={formData.email}
         onChange={handleChange}
       />
+      <div style={{color:'sandybrown'}}> Space</div>
 <div style={{fontSize:'30px'}}> 
       <label htmlFor="message">Message:</label>
       <textarea
