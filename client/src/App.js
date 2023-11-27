@@ -29,7 +29,6 @@ function App() {
           <Route path="/contactus" Component={Contact}/>
           <Route path="/about" Component={About}/>
         </Routes>
-        <Footer/>
       </div>
     </Router>
   );
