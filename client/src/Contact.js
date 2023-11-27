@@ -30,7 +30,7 @@ const Contact = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} style={{textAlign:'center'}}>
       <label htmlFor="name">Name:</label>
       <input
         type="text"
@@ -48,7 +48,7 @@ const Contact = () => {
         value={formData.email}
         onChange={handleChange}
       />
-
+<div> 
       <label htmlFor="message">Message:</label>
       <textarea
         id="message"
@@ -58,6 +58,7 @@ const Contact = () => {
       />
 
       <button type="submit">Submit</button>
+      </div>
     </form>
   );
 };
