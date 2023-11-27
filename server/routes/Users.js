@@ -1,16 +1,9 @@
 const express = require("express")
 const router = express.Router()
-<<<<<<< HEAD
 const { Users, Recipe, Recipe_Ingredient, FridgeIngredient, DietaryRestrictions, Sequelize  } = require("../models")
 const jwt = require('jsonwebtoken')
 const authenticate = require('../middlewares/authenticate')
 const bcrypt = require("bcrypt")
-=======
-const { Users, Recipe, Recipe_Ingredient, FridgeIngredient, Sequelize  } = require("../models")
-const jwt = require('jsonwebtoken')
-const authenticate = require('../middlewares/authenticate');
-const bcrypt = require("bcrypt");
->>>>>>> c60e6ec0bc497e8fb3f71975dfaeaad204e000c0
 const saltRounds = 10
 
 
@@ -261,7 +254,6 @@ router.delete('/delete_ingredient', authenticate, async (req,res) => {
     }
 })
 
-<<<<<<< HEAD
 router.post('/dietaryRestrictions', authenticate, async (req, res) => {
     console.log('hit diet route')
     try{
@@ -357,6 +349,4 @@ router.get('/dietaryRestrictionslist', authenticate, async(req,res) => {
     
 })
 
-=======
->>>>>>> c60e6ec0bc497e8fb3f71975dfaeaad204e000c0
 module.exports = router
