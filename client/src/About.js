@@ -12,6 +12,8 @@ function About() {
             <div style = {{background: 'white', margin:'10px'}}>
                 <h2 style = {{size: '25px'}}> Valerie Duffey</h2>
                 <h3> Valerie Duffey is a senior at the University of South Carolina studying computer engineering. Her passion for this field ignited at a young age and plans to continue this love throughout her career.  Valerie boasts invaluable hands-on experience, having actively contributed to the development and optimization of 5G networks and creating dynamic dashboards explaining the data related to it. In addition to work, she is on the executive board of Tau Beta Pi, where she plans professional and philanthropic events to better those involved.</h3>
+            </div>
+            <div>
                 <h2 style = {{size: '25px'}}> Justin Martin</h2>
                 <h3> Justin Martin is a senior at the University of South Carolina studying computer engineering. His passion for computers comes from his father as he watched him work on computers all his life. Another thing that lit his passion is video games and how they worked. Justin has worked on many cool projects such as robots and mini coding projects.</h3>
                 <h2 style = {{size: '25px'}}> Antonio Turner</h2>
