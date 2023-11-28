@@ -12,6 +12,7 @@ import Recipes from './Recipes';
 import PriceComp from './PriceComp';
 import Contact from './Contact';
 import About from './About';
+import DietaryRestrictions from './DietaryRestrictions'
 //npm install react-router-dom
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
           <Route path="/profile" Component={Profile}/>
           <Route path="/contactus" Component={Contact}/>
           <Route path="/about" Component={About}/>
+          <Route path='/DietaryRestrictions' Component={DietaryRestrictions}/>
         </Routes>
       </div>
     </Router>
