@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import Axios from 'axios';
 import Cookies from 'js-cookie'
 import { Link } from 'react-router-dom'
+import Header from './Header';
+import Footer from './Footer';
 
 function DietaryRestrictions() {
     const [mediterranean, setMediterranean] = useState(false)
@@ -110,6 +112,7 @@ function DietaryRestrictions() {
 
     return (
         <div>
+            <Header/>
             <nav>
                 <Link to="/profile">Profile</Link>
                 <Link to="/Home">Home</Link>
@@ -280,6 +283,7 @@ function DietaryRestrictions() {
                     ))}
                 </div>
             </div>
+            <Footer/>
         </div>
     )
 }
