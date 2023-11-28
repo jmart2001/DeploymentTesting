@@ -62,8 +62,8 @@ function Header() {
             <Home/>
             <Recipe/>
             <Price/>
-            <Prof/>
             <Diet/>
+            <Prof/>
           </ul>
         </nav> 
         <ul style={{color: 'lemonchiffon', fontSize: '15px'}}>

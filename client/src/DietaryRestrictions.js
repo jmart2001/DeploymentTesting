@@ -114,8 +114,6 @@ function DietaryRestrictions() {
         <div>
             <Header/>
             <nav>
-                <Link to="/profile">Profile</Link>
-                <Link to="/Home">Home</Link>
             </nav>
             <div>
                 <h1>Dietary Restrictions</h1>
