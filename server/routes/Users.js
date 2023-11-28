@@ -254,4 +254,100 @@ router.delete('/delete_ingredient', authenticate, async (req,res) => {
     }
 })
 
+router.post('/dietaryRestrictions', authenticate, async (req, res) => {
+    console.log('hit diet route')
+    try{
+        const userId = req.userId
+        const selectedRestrictions = req.body
+        console.log('Selected Dietary Restrictions:', selectedRestrictions)
+
+        const dietaryRestrictions = await DietaryRestrictions.findOne({
+            where: { user_id: userId }
+        })
+
+        const dietaryRestrictionsData = {
+            user_id: userId,
+            Mediterranean: selectedRestrictions.mediterranean || false,
+            DairyFree: selectedRestrictions.dairyFree || false,
+            GlutenFree: selectedRestrictions.glutenFree || false,
+            WheatFree: selectedRestrictions.wheatFree || false,
+            EggFree: selectedRestrictions.eggFree || false,
+            PeanutFree: selectedRestrictions.peanutFree || false,
+            TreeNutFree: selectedRestrictions.treeNutFree || false,
+            FishFree: selectedRestrictions.fishFree || false,
+            ShellfishFree: selectedRestrictions.shellfishFree || false,
+            PorkFree: selectedRestrictions.porkFree || false,
+            RedMeatFree: selectedRestrictions.redMeatFree || false,
+            CrustaceanFree: selectedRestrictions.crustaceanFree || false,
+            CeleryFree: selectedRestrictions.celeryFree || false,
+            MustardFree: selectedRestrictions.mustardFree || false,
+            SesameFree: selectedRestrictions.sesameFree || false,
+            LupineFree: selectedRestrictions.lupineFree || false,
+            MolluskFree: selectedRestrictions.molluskFree || false,
+            Kosher: selectedRestrictions.kosherFree || false,
+        }
+
+        if (!dietaryRestrictions) {
+            dietaryRestrictions = await DietaryRestrictions.create(
+                dietaryRestrictionsData
+            )
+        }
+        else{
+            await dietaryRestrictions.update(dietaryRestrictionsData)
+        }
+
+        res.status(200).json({ message: 'Dietary restrictions saved successfully' })
+    }
+    catch (error) {
+        console.error(error)
+        res.status(500).json({ error: 'Internal Server Error' })
+    }
+})
+
+router.get('/dietaryRestrictionslist', authenticate, async(req,res) => {
+    console.log('hit get dietaryRestrictions route')
+    try {
+        const userId = req.userId
+
+        // Find existing dietary restrictions for the user
+        const dietaryRestrictions = await DietaryRestrictions.findOne({
+            where: { user_id: userId }
+        })
+
+        if (!dietaryRestrictions) {
+            return res.status(404).json({ error: 'Dietary restrictions not found for the user.' })
+        }
+
+        // Extract relevant dietary restrictions
+        const savedRestrictions = {
+            mediterranean: dietaryRestrictions.Mediterranean,
+            dairyFree: dietaryRestrictions.DairyFree,
+            glutenFree: dietaryRestrictions.GlutenFree,
+            wheatFree: dietaryRestrictions.WheatFree,
+            eggFree: dietaryRestrictions.EggFree,
+            peanutFree: dietaryRestrictions.PeanutFree,
+            treeNutFree: dietaryRestrictions.TreeNutFree,
+            fishFree: dietaryRestrictions.FishFree,
+            shellfishFree: dietaryRestrictions.ShellfishFree,
+            porkFree: dietaryRestrictions.PorkFree,
+            redMeatFree: dietaryRestrictions.RedMeatFree,
+            crustaceanFree: dietaryRestrictions.CrustaceanFree,
+            celeryFree: dietaryRestrictions.CeleryFree,
+            mustardFree: dietaryRestrictions.MustardFree,
+            sesameFree: dietaryRestrictions.SesameFree,
+            lupineFree: dietaryRestrictions.LupineFree,
+            molluskFree: dietaryRestrictions.MolluskFree,
+            kosher: dietaryRestrictions.Kosher,
+        }
+
+        res.status(200).json({ savedRestrictions })
+    }
+    catch (error) {
+        console.error(error)
+        res.status(500).json({ error: 'Internal Server Error' })
+    }
+    
+})
+
+
 module.exports = router
