@@ -2,6 +2,7 @@ import "./Header.css";
 import PriceComp from "./PriceComp";
 import Profile from "./Profile";
 import Recipes from "./Recipes";
+import Dietary from "./DietaryRestrictions";
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
