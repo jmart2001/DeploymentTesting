@@ -43,6 +43,15 @@ return (
     </Link>
     );
 }
+function Diet() {
+  return (
+    <Link to="/dietary">
+      <button style={{ fontFamily: "cursive", fontSize: "25px" }}>
+        DietaryRestrictions
+      </button>
+    </Link>
+  );
+}
 
 function Header() {
     return (
