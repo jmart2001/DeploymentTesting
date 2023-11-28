@@ -1,3 +1,23 @@
+/* Global Styles */
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f8f8f8;
+}
+
+nav {
+  background-color: #333;
+  padding: 10px;
+  text-align: center;
+}
+
+nav a {
+  color: white;
+  margin: 0 10px;
+  text-decoration: none;
+}
+
 .registration {
   display: flex;
   flex-direction: column;
@@ -23,6 +43,15 @@
   border-radius: 5px;
   box-sizing: border-box;
   font-size: 16px;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+}
+
+.checkbox-label input {
+  margin-right: 8px;
 }
 
 .error-message {
