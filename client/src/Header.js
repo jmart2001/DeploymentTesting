@@ -63,6 +63,7 @@ function Header() {
             <Recipe/>
             <Price/>
             <Prof/>
+            <Diet/>
           </ul>
         </nav> 
         <ul style={{color: 'lemonchiffon', fontSize: '15px'}}>
