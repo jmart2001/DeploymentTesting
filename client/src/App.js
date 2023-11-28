@@ -29,7 +29,7 @@ function App() {
           <Route path="/profile" Component={Profile}/>
           <Route path="/contactus" Component={Contact}/>
           <Route path="/about" Component={About}/>
-          <Route path='/DietaryRestrictions' Component={DietaryRestrictions}/>
+          <Route path='/dietary' Component={DietaryRestrictions}/>
         </Routes>
       </div>
     </Router>
