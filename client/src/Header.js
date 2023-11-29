@@ -2,6 +2,7 @@ import "./Header.css";
 import PriceComp from "./PriceComp";
 import Profile from "./Profile";
 import Recipes from "./Recipes";
+import Dietary from "./DietaryRestrictions";
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -42,6 +43,15 @@ return (
     </Link>
     );
 }
+function Diet() {
+  return (
+    <Link to="/dietary">
+      <button style={{ fontFamily: "cursive", fontSize: "25px" }}>
+        DietaryRestrictions
+      </button>
+    </Link>
+  );
+}
 
 function Header() {
     return (
@@ -52,6 +62,7 @@ function Header() {
             <Home/>
             <Recipe/>
             <Price/>
+            <Diet/>
             <Prof/>
           </ul>
         </nav> 

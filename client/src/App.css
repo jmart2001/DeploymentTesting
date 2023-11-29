@@ -25,6 +25,15 @@
   font-size: 16px;
 }
 
+.checkbox-label {
+  display: flex;
+  align-items: center;
+}
+
+.checkbox-label input {
+  margin-right: 8px;
+}
+
 .error-message {
   color: red;
   font-size: 14px;
@@ -51,4 +60,13 @@ li {
   padding: 8px;
   margin: 4px 0;
   border-radius: 4px;
+}
+
+.saved-restrictions {
+  margin-top: 20px;
+}
+
+.saved-restriction-item {
+  margin-bottom: 8px;
+  font-size: 16px;
 }
