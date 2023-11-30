@@ -62,6 +62,7 @@ const DietaryRestrictions = () => {
 
 
         console.log('Dietary restrictions saved successfully!')
+        setUserHealthLabels(selectedRestrictions)
     }
     catch (error) {
         console.error('Error saving dietary restrictions:', error)
