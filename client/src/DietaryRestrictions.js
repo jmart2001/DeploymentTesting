@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import Axios from 'axios'
 import Cookies from 'js-cookie'
+import Header from './Header';
+import Footer from './Footer';
 
 const DietaryRestrictions = () => {
   const [healthLabels, setHealthLabels] = useState([])
@@ -90,6 +92,7 @@ const DietaryRestrictions = () => {
 
   return (
     <div>
+      <Header/>
       <h1>Dietary Restrictions</h1>
       <form>
         <h3>Select your dietary restrictions:</h3>
@@ -119,6 +122,7 @@ const DietaryRestrictions = () => {
       </ul>
 
       </div>
+      <Footer/>
     </div>
   ) 
 } 

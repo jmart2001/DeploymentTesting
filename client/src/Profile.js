@@ -1,6 +1,8 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import Axios from 'axios';
 import Cookies from 'js-cookie';
+import Header from './Header';
+import Footer from './Footer';
 
 const Profile = () => {
   const [userData, setUserData] = useState({});
@@ -116,6 +118,7 @@ const Profile = () => {
 
   return (
     <div>
+      <Header/>
       <h1>Profile Page</h1>
       <div className='Account Information'>
         <h2>Username: {username}</h2>
@@ -153,6 +156,7 @@ const Profile = () => {
             ))}
         </ul>
       </div>
+      <Footer/>
     </div>
   );
 };
