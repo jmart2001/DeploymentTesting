@@ -1,17 +1,17 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import Header from './Header';
+import Footer from './Footer';
 
 function Home() {
     
     return (
-        <div>
-            <nav>
-                <Link to="/profile">Profile</Link>
-                <Link to="/DietaryRestrictions">Dietary Restrictions</Link>
-            </nav>
+        <div style={{textAlign:'center'}}>
+            <Header/>
             <div>
-                <h1>Hello Capstone</h1>
+                <h1>Welcome to What to Cook</h1>
             </div>
+            <Footer/>
         </div>
     )
 }
