@@ -9,10 +9,6 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.TEXT,
       allowNull: false,
     },
-    calories: {
-      type: DataTypes.INTEGER, 
-      allowNull: false,
-    },
     total_time: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -23,9 +19,13 @@ module.exports = (sequelize, DataTypes) => {
     Recipe.hasMany(models.Recipe_Ingredient, {
         foreignKey: 'recipe_id',
         onDelete: 'CASCADE',
-        as: 'Recipe_Ingredient', 
-    });
-};
+        as: 'Ingredients', 
+    })
+    Recipe.belongsToMany(models.HealthLabel, {
+      through: 'RecipeHealthLabels',
+      foreignKey: 'recipe_id',
+    })
+  }
 
   return Recipe
 }
