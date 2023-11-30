@@ -1,6 +1,6 @@
 const express = require("express")
 const router = express.Router()
-const { Users, Recipe, Recipe_Ingredient, FridgeIngredient, DietaryRestrictions, Sequelize  } = require("../models")
+const { Users, Recipe, Recipe_Ingredient, Ingredient, FridgeIngredient, DietaryRestrictions, HealthLabel, Sequelize  } = require("../models")
 const jwt = require('jsonwebtoken')
 const authenticate = require('../middlewares/authenticate')
 const bcrypt = require("bcrypt")
@@ -108,24 +108,24 @@ router.post('/profile_ingredient_list', authenticate, async (req, res) => {
     try {
       const { name, quantity } = req.body;
 
-      const trimmedIngredientName = name.trim()
+    //   console.log('req.body' + name + quantity)
 
-      console.log('trimmedIngredientName:', trimmedIngredientName)
-
-      const recipeIngredient = await Recipe_Ingredient.findOne({
+        // check if user's ingredient name is in the Ingredient table 
+      const ingredient = await Ingredient.findOne({
         where: { 
             name: {
-                [Sequelize.Op.like]: `%${trimmedIngredientName}%`, 
+                [Sequelize.Op.like]: `%${name}%`, 
             },
         },
       })
 
-      if (recipeIngredient) {
-        console.log('Recipe Ingredient:', recipeIngredient.name)
+      // if true 
+      if (ingredient) {
+        console.log('Ingredient:', ingredient.name)
       }
       else {
-        console.error('Recipe ingredient not found for: ', trimmedIngredientName)
-        res.status(404).json({ error: 'Recipe ingredient not found.' })
+        console.error('Ingredient not found for: ', name)
+        res.status(404).json({ error: 'Ingredient not found.' })
         return
       }
 
@@ -133,28 +133,20 @@ router.post('/profile_ingredient_list', authenticate, async (req, res) => {
       const [userProfile, created] = await FridgeIngredient.findOrCreate({
         where: { 
             user_id: req.userId,
-            ingredients_id: recipeIngredient.id,
+            ingredient_id: ingredient.id,
         },
         defaults: {
             quantity: quantity,
           },
       })
-    
-      console.log('Recipe Ingredient ID:', recipeIngredient.id)
 
       // handle case if the user profile already has the ingrendient 
       if (!created) {
         //console.log('User already has this ingredient!')
         await userProfile.update({ quantity: quantity })
-        console.log('Quantity updated for existing ingredient:', recipeIngredient.id)
       }
-      else{
 
-      }
-        // Create a new FridgeIngredient instance
-         
-
-      res.json({ message: 'Fridge updated successfully' })
+        res.json({ message: 'Fridge updated successfully' })
     } 
     catch (error) {
       console.error(error);
@@ -170,8 +162,8 @@ router.get('/saved_ingredients', authenticate, async (req, res) => {
             where: { user_id: req.userId },
             include: [
                 {
-                    model: Recipe_Ingredient,
-                    as: 'Recipe_Ingredient',
+                    model: Ingredient,
+                    as: 'Ingredient',
                     attributes: ['name'],
                 },
             ],
@@ -179,7 +171,7 @@ router.get('/saved_ingredients', authenticate, async (req, res) => {
 
         if (userProfile && userProfile.length > 0) {
             const savedIngredients = userProfile.map(entry => ({
-                name: entry.Recipe_Ingredient.name,
+                name: entry.Ingredient.name,
                 quantity: entry.quantity,
             }))
             res.json({ savedIngredients })
@@ -201,23 +193,23 @@ router.delete('/delete_ingredient', authenticate, async (req,res) => {
 
         console.log('Deleting ingredient with name:', name)
 
-        const recipeIngredient = await Recipe_Ingredient.findOne({
-            where: { 
+        const ingredient = await Ingredient.findOne({
+            where: {
                 name: {
-                    [Sequelize.Op.like]: `%${name}`,
-                }, 
+                    [Sequelize.Op.like]: `%${name}%`,
+                },
             },
-        }) 
+        })
 
-        if (!recipeIngredient) {
-            console.error('Recipe ingredient not found for: ', name)
-            return res.status(404).json({ error: 'Recipe ingredient not found.' })
+        if (!ingredient) {
+            console.error('Ingredient not found for:', name)
+            return res.status(404).json({ error: 'Ingredient not found.' })
         }
 
         const deletedRows = await FridgeIngredient.destroy({
             where: {
                 user_id: req.userId,
-                ingredients_id: recipeIngredient.id,
+                ingredient_id: ingredient.id,
             },
         })
 
@@ -227,8 +219,8 @@ router.delete('/delete_ingredient', authenticate, async (req,res) => {
                 where: { user_id: req.userId },
                 include: [
                     {
-                        model: Recipe_Ingredient,
-                        as: 'Recipe_Ingredient',
+                        model: Ingredient,
+                        as: 'Ingredient',
                         attributes: ['name'],
                     },
                 ],
@@ -236,7 +228,7 @@ router.delete('/delete_ingredient', authenticate, async (req,res) => {
 
             const updatedSavedIngredients = updatedUserProfile.map(
                 (entry) => ({
-                    name: entry.Recipe_Ingredient.name,
+                    name: entry.Ingredient.name,
                     quantity: entry.quantity,
                 })
             )
@@ -254,48 +246,32 @@ router.delete('/delete_ingredient', authenticate, async (req,res) => {
     }
 })
 
-router.post('/dietaryRestrictions', authenticate, async (req, res) => {
-    console.log('hit diet route')
+router.post('/dietary_restrictions', authenticate, async (req, res) => {
     try{
+        console.log('hit diet route')
         const userId = req.userId
-        const selectedRestrictions = req.body
-        console.log('Selected Dietary Restrictions:', selectedRestrictions)
+        console.log('userId: => ', userId)
+        const { selectedRestrictions } = req.body
+        console.log('selectedRestrictions: => ', selectedRestrictions)
 
-        const dietaryRestrictions = await DietaryRestrictions.findOne({
-            where: { user_id: userId }
+        const healthLabelIds = Array.isArray(selectedRestrictions)
+            ? selectedRestrictions
+            : [selectedRestrictions]
+        
+        console.log(healthLabelIds)
+
+        await DietaryRestrictions.destroy({
+            where: { user_id: userId },
         })
 
-        const dietaryRestrictionsData = {
-            user_id: userId,
-            Mediterranean: selectedRestrictions.mediterranean || false,
-            DairyFree: selectedRestrictions.dairyFree || false,
-            GlutenFree: selectedRestrictions.glutenFree || false,
-            WheatFree: selectedRestrictions.wheatFree || false,
-            EggFree: selectedRestrictions.eggFree || false,
-            PeanutFree: selectedRestrictions.peanutFree || false,
-            TreeNutFree: selectedRestrictions.treeNutFree || false,
-            FishFree: selectedRestrictions.fishFree || false,
-            ShellfishFree: selectedRestrictions.shellfishFree || false,
-            PorkFree: selectedRestrictions.porkFree || false,
-            RedMeatFree: selectedRestrictions.redMeatFree || false,
-            CrustaceanFree: selectedRestrictions.crustaceanFree || false,
-            CeleryFree: selectedRestrictions.celeryFree || false,
-            MustardFree: selectedRestrictions.mustardFree || false,
-            SesameFree: selectedRestrictions.sesameFree || false,
-            LupineFree: selectedRestrictions.lupineFree || false,
-            MolluskFree: selectedRestrictions.molluskFree || false,
-            Kosher: selectedRestrictions.kosherFree || false,
+        for (const healthLabelId of healthLabelIds) {
+            await DietaryRestrictions.create({
+                user_id: userId,
+                healthLabel_id: healthLabelId,
+            })
+            console.log(`Dietary restriction created for healthLabelId ${healthLabelId}.`)
         }
-
-        if (!dietaryRestrictions) {
-            dietaryRestrictions = await DietaryRestrictions.create(
-                dietaryRestrictionsData
-            )
-        }
-        else{
-            await dietaryRestrictions.update(dietaryRestrictionsData)
-        }
-
+       
         res.status(200).json({ message: 'Dietary restrictions saved successfully' })
     }
     catch (error) {
@@ -304,43 +280,66 @@ router.post('/dietaryRestrictions', authenticate, async (req, res) => {
     }
 })
 
-router.get('/dietaryRestrictionslist', authenticate, async(req,res) => {
-    console.log('hit get dietaryRestrictions route')
+router.get('/user_healthlabels', authenticate, async (req, res) => {
     try {
         const userId = req.userId
 
-        // Find existing dietary restrictions for the user
-        const dietaryRestrictions = await DietaryRestrictions.findOne({
-            where: { user_id: userId }
+        const dietaryRestrictions = await DietaryRestrictions.findAll({
+            where: { user_id: userId },
+            attributes: ['healthLabel_id'],
         })
 
-        if (!dietaryRestrictions) {
-            return res.status(404).json({ error: 'Dietary restrictions not found for the user.' })
-        }
+        const healthLabelIds = dietaryRestrictions.map((restriction) => restriction.healthLabel_id)
 
-        // Extract relevant dietary restrictions
-        const savedRestrictions = {
-            mediterranean: dietaryRestrictions.Mediterranean,
-            dairyFree: dietaryRestrictions.DairyFree,
-            glutenFree: dietaryRestrictions.GlutenFree,
-            wheatFree: dietaryRestrictions.WheatFree,
-            eggFree: dietaryRestrictions.EggFree,
-            peanutFree: dietaryRestrictions.PeanutFree,
-            treeNutFree: dietaryRestrictions.TreeNutFree,
-            fishFree: dietaryRestrictions.FishFree,
-            shellfishFree: dietaryRestrictions.ShellfishFree,
-            porkFree: dietaryRestrictions.PorkFree,
-            redMeatFree: dietaryRestrictions.RedMeatFree,
-            crustaceanFree: dietaryRestrictions.CrustaceanFree,
-            celeryFree: dietaryRestrictions.CeleryFree,
-            mustardFree: dietaryRestrictions.MustardFree,
-            sesameFree: dietaryRestrictions.SesameFree,
-            lupineFree: dietaryRestrictions.LupineFree,
-            molluskFree: dietaryRestrictions.MolluskFree,
-            kosher: dietaryRestrictions.Kosher,
-        }
+        const healthLabels = await HealthLabel.findAll({
+            where: { id: healthLabelIds },
+            attributes: ['label'],
+        })
 
-        res.status(200).json({ savedRestrictions })
+        const labelValues = healthLabels.map((healthLabel) => healthLabel.label)
+
+        res.status(200).json({ userHealthLabels: labelValues })
+
+        // console.log(labelValues)
+    }
+    catch (error){
+        console.error(error)
+        res.status(500).json({ error: 'Internal Server Error' })
+    }
+})
+
+router.get('/healthlabels_ids', async (req, res) => {
+    try{
+        // console.log('het get health ids')
+        const { selectedRestrictions } = req.query
+
+        const healthLabels = await HealthLabel.findAll({
+            where: { label: selectedRestrictions.split(',') },
+            attributes: ['id'],
+        })
+        
+        const healthLabelIds = healthLabels.map((label) => label.id)
+    
+        res.status(200).json({ healthLabelIds })
+    }
+    catch (error){
+        console.error(error)
+        res.status(500).json({ error: 'Internal Server Error' })
+    }
+})
+
+router.get('/healthlabels', async(req, res) => {
+    console.log('hit get dietaryRestrictions route')
+    try {
+
+        // get all the labels send to frontend for checklist 
+        const healthLabels = await HealthLabel.findAll({
+            attributes: ['label'],
+        })
+
+        const labelValues = healthLabels.map((healthLabel) => healthLabel.label)
+
+        res.status(200).json({ labels: labelValues })
     }
     catch (error) {
         console.error(error)

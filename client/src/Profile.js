@@ -1,96 +1,101 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import Axios from 'axios';
-import Cookies from 'js-cookie'
+import Cookies from 'js-cookie';
 
 const Profile = () => {
-  const [userData, setUserData] = useState({})   
-  const [savedIngredients, setSavedIngredients] = useState([])
-  const [ingredientName, setIngredientName] = useState('')
-  const [ingredientQuantity, setIngredientQuantity] = useState('') 
-  
+  const [userData, setUserData] = useState({});
+  const [savedIngredients, setSavedIngredients] = useState([]);
+  const [ingredientName, setIngredientName] = useState('');
+  const [ingredientQuantity, setIngredientQuantity] = useState('');
 
   // Fetch email and username
   useEffect(() => {
-    const authToken = Cookies.get('userToken')
-    Axios.get('http://localhost:3001/users/profile', { 
+    const authToken = Cookies.get('userToken');
+    Axios.get('http://localhost:3001/users/profile', {
       withCredentials: true,
       headers: {
-        Authorization: `Bearer ${authToken}` 
+        Authorization: `Bearer ${authToken}`,
       },
     })
-    .then((response) => {
-      console.log('Profile response:', response.data)
-      setUserData(response.data)
-    })
-    .catch((error) => {
-      console.error(error)
-    })
-  }, [])
+      .then((response) => {
+        console.log('Profile response:', response.data);
+        setUserData(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
 
   // Fetch and display saved ingredients
-  
-    const fetchSavedIngredients = useCallback(async () => {
-      try {
-        const response = await Axios.get('http://localhost:3001/users/saved_ingredients', {
+  const fetchSavedIngredients = useCallback(async () => {
+    try {
+      const response = await Axios.get(
+        'http://localhost:3001/users/saved_ingredients',
+        {
           withCredentials: true,
           headers: {
             Authorization: `Bearer ${Cookies.get('userToken')}`,
           },
-        })
-        console.log('Response Data:', response.data)
-        setSavedIngredients(response.data.savedIngredients)
-        setIngredientName('')
-        setIngredientQuantity('')
-              
-      }
-      catch (error) {
-        console.error(error)
-      }
-    }, [])
-    
-  useEffect(() => {
-    fetchSavedIngredients()
-  }, [fetchSavedIngredients])
+        }
+      );
+      console.log('Response Data:', response.data);
+      setSavedIngredients(response.data.savedIngredients);
+      setIngredientName('');
+      setIngredientQuantity('');
+    } catch (error) {
+      console.error(error);
+    }
+  }, []);
 
-  const { username = '', email = ''} = userData || {}  
+  const { username = '', email = '' } = userData || {};
 
-
+  // insert ingredients into the fridge table
   const handleSaveIngredients = async () => {
     try {
-      console.log('Input Ingredient Name:', ingredientName)
+      console.log('Input Ingredient Name:', ingredientName);
 
-      const trimmedIngredientName = ingredientName.trim(); // trim to remove leading/trailing whitespaces
+      const trimmedIngredientName = ingredientName.toLowerCase().trim();
+      console.log('trimmedIngredientName:' + trimmedIngredientName);
 
       if (!trimmedIngredientName) {
         console.error('Ingredient name cannot be empty.');
         return;
-      }        
+      }
 
-      console.log('Trimmed Ingredient Name:', trimmedIngredientName)
+      if (!ingredientQuantity) {
+        console.error('Quantity cannot be empty.');
+        return;
+      }
 
       const response = await Axios.post(
         'http://localhost:3001/users/profile_ingredient_list',
-        { name: trimmedIngredientName,
+        {
+          name: trimmedIngredientName,
           quantity: ingredientQuantity,
         },
         {
           withCredentials: true,
           headers: {
-          Authorization: `Bearer ${Cookies.get('userToken')}`,
+            Authorization: `Bearer ${Cookies.get('userToken')}`,
           },
         }
-      )
-      console.log(response.data)
-      // Update the saved ingredients list after a successful save
-      setSavedIngredients(response.data.savedIngredients)
+      );
+      console.log(response.data);
+      // Only fetch ingredients after a successful save
+      fetchSavedIngredients();
+      setIngredientName('');
+      setIngredientQuantity('');
+    } catch (error) {
+      console.error(error);
     }
-    catch(error) {
-      console.error(error)
-    }
-  }
+  };
+
+  useEffect(() => {
+    fetchSavedIngredients();
+  }, []);
 
   const handleDeleteIngredient = async (ingredientName) => {
-    try{
+    try {
       const response = await Axios.delete(
         'http://localhost:3001/users/delete_ingredient',
         {
@@ -102,56 +107,54 @@ const Profile = () => {
             name: ingredientName,
           },
         }
-      )
-      console.log(response.data)
-      setSavedIngredients(response.data.savedIngredients)
+      );
+      setSavedIngredients(response.data.savedIngredients);
+    } catch (error) {
+      console.error(error);
     }
-    catch (error) {
-      console.error(error)
-    }
-  }
+  };
 
   return (
     <div>
       <h1>Profile Page</h1>
-        <div className='Account Information'>
-          <h2>Username: {username}</h2>
-            <h2>Email: {email}</h2>
-        </div>
-        <form>
-          <h3>Ingredients:</h3>
-            <input
-              type='text'
-              value={ingredientName}
-              onChange={(e) => setIngredientName(e.target.value)}
-              placeholder='Ingredient Name'
-            />
-            <input
-              type='text'
-              value={ingredientQuantity}
-              onChange={(e) => setIngredientQuantity(e.target.value)}
-              placeholder='Quantity'
-            />
-            <button type='button' onClick={handleSaveIngredients}>
-              Save
-            </button>
-        </form>
-        <div>
+      <div className='Account Information'>
+        <h2>Username: {username}</h2>
+        <h2>Email: {email}</h2>
+      </div>
+      <form>
+        <h3>Ingredients:</h3>
+        <input
+          type='text'
+          value={ingredientName}
+          onChange={(e) => setIngredientName(e.target.value)}
+          placeholder='Ingredient Name'
+        />
+        <input
+          type='text'
+          value={ingredientQuantity}
+          onChange={(e) => setIngredientQuantity(e.target.value)}
+          placeholder='Quantity'
+        />
+        <button type='button' onClick={handleSaveIngredients}>
+          Save
+        </button>
+      </form>
+      <div>
         <h3>Saved Ingredients:</h3>
         <ul>
           {savedIngredients &&
             savedIngredients.map((ingredient, index) => (
-            <li key={index}>
-              {ingredient.name} - {ingredient.quantity}
-              <button onClick={() => handleDeleteIngredient(ingredient.name)}>
-                Delete
-              </button>
-            </li>
-          ))}
+              <li key={index}>
+                {ingredient.name} - {ingredient.quantity}
+                <button onClick={() => handleDeleteIngredient(ingredient.name)}>
+                  Delete
+                </button>
+              </li>
+            ))}
         </ul>
-      </div>            
+      </div>
     </div>
-  )  
-}
+  );
+};
 
 export default Profile;
