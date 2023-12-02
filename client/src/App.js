@@ -9,7 +9,7 @@ import Register from './Register';
 import Header from './Header';
 import Footer from './Footer';
 import Recipes from './Recipes';
-import PriceComp from './PriceComp';
+import PriceComp from './Comparer';
 import Contact from './Contact';
 import About from './About';
 import DietaryRestrictions from './DietaryRestrictions'
