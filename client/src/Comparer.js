@@ -1,57 +1,75 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+// PriceComparator.js
+import React, { useState, useEffect } from 'react';
+import SearchBar from './SearchBar';
+import Header from './Header';
+import Footer from './Footer';
 
 const PriceComparator = () => {
-  const [items, setItems] = useState([ //Place to pull from list whenever we get there
-    { id: 1, name: 'Item 1', price: 10 }, // Just a place holder for now
-    { id: 2, name: 'Item 2', price: 15 },
-    { id: 3, name: 'Item 3', price: 20 },
-   
-  ]);
-
-  // State to store the selected items
+  const [items, setItems] = useState([]);
   const [selectedItems, setSelectedItems] = useState([]);
-  // State to store the total price of selected items
   const [totalPrice, setTotalPrice] = useState(0);
 
-  // Function to handle item click and toggle selection
-  const handleItemClick = (itemId) => {
-    const selectedItem = items.find(item => item.id === itemId); // Find the selected item by its ID then see if it's been selected already
-    const isItemSelected = selectedItems.includes(selectedItem);
-
-    if (isItemSelected) { //if selected it removes it from the list
-      setSelectedItems(selectedItems.filter(item => item.id !== itemId));
-    } else {
-      setSelectedItems([...selectedItems, selectedItem]);
-    }
+  const handleSearchResults = (searchResults) => {
+    setItems(searchResults);
   };
 
-  // Calculate total price whenever selectedItems change
-  React.useEffect(() => {
-     // Use reduce built in thingy to sum up the prices of selected items
-    const newTotalPrice = selectedItems.reduce((acc, item) => acc + item.price, 0);
-    setTotalPrice(newTotalPrice); // then update total price
+  const handleItemClick = (productId) => {
+    const selectedItem = items.find(item => item.productId === productId);
+    setSelectedItems([...selectedItems, selectedItem]);
+  };
+
+  const handleRemoveItem = (productId) => {
+    const updatedSelectedItems = selectedItems.filter(item => item.productId !== productId);
+    setSelectedItems(updatedSelectedItems);
+  };
+
+  useEffect(() => {
+    const newTotalPrice = selectedItems.reduce((acc, item) => {
+      const priceToAdd = item.price[0].promo !== 0 && item.price[0].promo < item.price[0].regular
+        ? item.price[0].promo
+        : item.price[0].regular;
+
+      return acc + priceToAdd;
+    }, 0);
+
+    setTotalPrice(newTotalPrice);
   }, [selectedItems]);
 
   return (
     <div>
-      <h1>Price Comparator</h1>
-      <ul>
-        {items.map(item => (
-          <li key={item.id} onClick={() => handleItemClick(item.id)} style={{ cursor: 'pointer' }}>
-            {item.name} - ${item.price}
-          </li>
-        ))}
-      </ul>
-      <h2>Selected Items</h2>
-      <ul>
-        {selectedItems.map(item => (
-          <li key={item.id}>{item.name} - ${item.price}</li>
-        ))}
-      </ul>
-      <h2>Total Price: ${totalPrice}</h2>
+      <Header />
+      <div>
+        <h1>Price Comparator</h1>
+        <SearchBar onSearchResults={handleSearchResults} />
+        <ul>
+          {items.map(item => (
+            <li key={item.productId} onClick={() => handleItemClick(item.productId)} style={{ cursor: 'pointer' }}>
+              <h2>{item.brand || 'Kroger'}</h2>
+              <p>Regular Price: ${item.price[0].regular}</p>
+              <p>Promo Price: ${item.price[0].promo !== 0 ? item.price[0].promo : 'N/A'}</p>
+            </li>
+          ))}
+        </ul>
+        <h2>Selected Items</h2>
+        <ul>
+          {selectedItems.map(item => (
+            <li key={item.productId} onClick={() => handleRemoveItem(item.productId)} style={{ cursor: 'pointer' }}>
+              <h2>{item.brand || 'Kroger'}</h2>
+              <p>Regular Price: ${item.price[0].regular}</p>
+              <p>Promo Price: ${item.price[0].promo !== 0 ? item.price[0].promo : 'N/A'}</p>
+            </li>
+          ))}
+        </ul>
+        <h2>Total Price: ${totalPrice}</h2>
+      </div>
+      <Footer />
     </div>
   );
 };
 
 export default PriceComparator;
+
+
+
+
+

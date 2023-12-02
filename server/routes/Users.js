@@ -349,9 +349,5 @@ router.get('/dietaryRestrictionslist', authenticate, async(req,res) => {
     
 })
 
-<<<<<<< HEAD
-module.exports = router
-=======
 
 module.exports = router
->>>>>>> dd194df9379339e7e5a14943723ac226dc573112

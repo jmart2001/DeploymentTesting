@@ -1,5 +1,5 @@
 //import "./Header.css";
-import PriceComp from "./PriceComp";
+import PriceComp from "./Comparer";
 import Profile from "./Profile";
 import Recipes from "./Recipes";
 import React, { useState } from 'react';
