@@ -1,29 +1,33 @@
 module.exports = (sequelize, DataTypes) => {
   const Recipe_Ingredient = sequelize.define("Recipe_Ingredient", {
-    name: {
-      type: DataTypes.STRING,
+    recipe_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    ingredient_id: {
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
     quantity: {
       type: DataTypes.FLOAT, 
       allowNull: false,
     },
-    weight: {
-      type: DataTypes.FLOAT, 
+    measure: {
+      type: DataTypes.STRING, 
       allowNull: true,
     },
-    recipe_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-  });
+  })
 
   Recipe_Ingredient.associate = (models) => {
       Recipe_Ingredient.belongsTo(models.Recipe, {
       foreignKey: 'recipe_id',
       onDelete: 'CASCADE',
-    });
-  };
+    })
+    Recipe_Ingredient.belongsTo(models.Ingredient, {
+      foreignKey: 'ingredient_id',
+      onDelete: 'CASCADE',
+    })
+  }
 
   return Recipe_Ingredient
-};
+}

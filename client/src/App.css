@@ -50,23 +50,69 @@
   font-size: 16px;
 }
 
+<<<<<<< HEAD
+=======
+/* List Styles */
+>>>>>>> 297f26138db94fb0a1e2dcacedd50018aa4707a9
 ul {
+  list-style: none;
+  padding: 0;
   font-size: 18px;
   font-weight: bold;
 }
 
 li {
-  background-color: #f0f0f0;
-  padding: 8px;
-  margin: 4px 0;
-  border-radius: 4px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 5px;
 }
 
-.saved-restrictions {
+/* .saved-restrictions {
   margin-top: 20px;
 }
 
 .saved-restriction-item {
+  margin-bottom: 8px;
+  font-size: 16px;
+} */
+
+/* Dietary Restrictions Styles */
+.dietary-restrictions {
+  margin: 20px;
+}
+
+.dietary-restrictions h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.dietary-restrictions form {
+  margin-bottom: 20px;
+}
+
+.dietary-restrictions label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.dietary-restrictions button {
+  background-color: #4caf50;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.dietary-restrictions .saved-restrictions {
+  margin-top: 20px;
+}
+
+.dietary-restrictions .saved-restriction-item {
   margin-bottom: 8px;
   font-size: 16px;
 }
