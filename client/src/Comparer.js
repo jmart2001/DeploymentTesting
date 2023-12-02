@@ -1,6 +1,6 @@
 // PriceComparator.js
 import React, { useState, useEffect } from 'react';
-import SearchBar from './SearchBar';
+import SearchBar from './SearchBarProducts';
 import Header from './Header';
 import Footer from './Footer';
 
