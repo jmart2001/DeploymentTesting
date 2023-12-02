@@ -1,12 +1,5 @@
-<<<<<<< HEAD
 "1 pound Fresh Salmon",
       "10 limes, squeezed",
       "1 cup watermelon, cubed",
       "1/2 cup cucumber, cubed",
-=======
-"1 pound Fresh Salmon",
-      "10 limes, squeezed",
-      "1 cup watermelon, cubed",
-      "1/2 cup cucumber, cubed",
->>>>>>> 297f26138db94fb0a1e2dcacedd50018aa4707a9
       "1/4 cup pepitas, toasted"
