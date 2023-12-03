@@ -1,8 +1,8 @@
 {
   "development": {
     "username": "root",
-    "password": "Justin-01",
-    "database": "testing",
+    "password": "Carolina",
+    "database": "whattocook",
     "host": "localhost",
     "dialect": "mysql"
   },
