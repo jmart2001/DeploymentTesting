@@ -7,20 +7,24 @@ const SearchBar = ({ onSearchResults }) => {
 
   const handleSearch = async () => {
     try {
-      if (!searchTerm) {
-        // Don't perform search if the search term is empty
+      if (!searchTerm.trim()) {
+        // Don't perform search if the trimmed search term is empty
         return;
       }
-
-      const response = await axios.get(`${process.env.PUBLIC_URL}/Products/${searchTerm.toLowerCase()}_prices.json`);
+  
+      // Replace spaces with underscores in the search term
+      const formattedSearchTerm = searchTerm.trim().replace(/\s+/g, '_');
+  
+      const response = await axios.get(`${process.env.PUBLIC_URL}/Products/${formattedSearchTerm.toLowerCase()}_prices.json`);
       const data = response.data.data; // Adjust the structure based on your JSON format
-
+  
       onSearchResults(data);
     } catch (error) {
       console.error('Error fetching data:', error);
       onSearchResults([]); // Clear the results in case of an error
     }
   };
+  
 
   return (
     <div>

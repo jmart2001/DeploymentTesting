@@ -10,7 +10,9 @@ const PriceComparator = () => {
   const [totalPrice, setTotalPrice] = useState(0);
 
   const handleSearchResults = (searchResults) => {
-    setItems(searchResults);
+    // Filter out items with a null price in the "price" array
+    const filteredItems = searchResults.filter(item => item.price && item.price[0] !== null);
+    setItems(filteredItems);
   };
 
   const handleItemClick = (productId) => {
@@ -25,9 +27,14 @@ const PriceComparator = () => {
 
   useEffect(() => {
     const newTotalPrice = selectedItems.reduce((acc, item) => {
-      const priceToAdd = item.price[0].promo !== 0 && item.price[0].promo < item.price[0].regular
-        ? item.price[0].promo
-        : item.price[0].regular;
+      // Check if price and regular property are not null or undefined
+      const regularPrice = item.price && item.price[0].regular;
+      const promoPrice = item.price && item.price[0].promo !== 0 ? item.price[0].promo : 'N/A';
+
+      // Check if regular price is not null or undefined
+      const priceToAdd = regularPrice !== null && regularPrice !== undefined
+        ? (promoPrice !== 'N/A' ? promoPrice : regularPrice)
+        : 0;
 
       return acc + priceToAdd;
     }, 0);
@@ -45,8 +52,13 @@ const PriceComparator = () => {
           {items.map(item => (
             <li key={item.productId} onClick={() => handleItemClick(item.productId)} style={{ cursor: 'pointer' }}>
               <h2>{item.brand || 'Kroger'}</h2>
-              <p>Regular Price: ${item.price[0].regular}</p>
-              <p>Promo Price: ${item.price[0].promo !== 0 ? item.price[0].promo : 'N/A'}</p>
+              {/* Check if "price" array is not null and the first element is not null */}
+              {item.price && item.price[0] !== null && (
+                <>
+                  <p>Regular Price: ${item.price[0].regular}</p>
+                  <p>Promo Price: ${item.price[0].promo !== 0 ? item.price[0].promo : 'N/A'}</p>
+                </>
+              )}
             </li>
           ))}
         </ul>
@@ -55,8 +67,13 @@ const PriceComparator = () => {
           {selectedItems.map(item => (
             <li key={item.productId} onClick={() => handleRemoveItem(item.productId)} style={{ cursor: 'pointer' }}>
               <h2>{item.brand || 'Kroger'}</h2>
-              <p>Regular Price: ${item.price[0].regular}</p>
-              <p>Promo Price: ${item.price[0].promo !== 0 ? item.price[0].promo : 'N/A'}</p>
+              {/* Check if "price" array is not null and the first element is not null */}
+              {item.price && item.price[0] !== null && (
+                <>
+                  <p>Regular Price: ${item.price[0].regular}</p>
+                  <p>Promo Price: ${item.price[0].promo !== 0 ? item.price[0].promo : 'N/A'}</p>
+                </>
+              )}
             </li>
           ))}
         </ul>
@@ -68,8 +85,4 @@ const PriceComparator = () => {
 };
 
 export default PriceComparator;
-
-
-
-
 
