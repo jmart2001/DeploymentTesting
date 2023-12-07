@@ -2,7 +2,7 @@ const express = require("express")
 const cors = require("cors")
 const session = require("express-session")
 const db = require('./models')
-require('dotenv').config();
+
 
 const app = express()
 
