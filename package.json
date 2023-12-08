@@ -8,6 +8,6 @@
   "start": "npm run start-server & npm run start-client"
 },
   "dependencies": {
-    // your dependencies here
+ 
   }
 }
