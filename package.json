@@ -1,5 +1,13 @@
-"scripts": {
+
+{
+  "name": "your-package-name",
+  "version": "1.0.0",
+  "scripts": {
   "start-server": "cd server && npm start",
   "start-client": "cd client && npm start",
   "start": "npm run start-server & npm run start-client"
+},
+  "dependencies": {
+    // your dependencies here
+  }
 }
